@@ -1,0 +1,15 @@
+{
+    // Use o IntelliSense para saber mais sobre os atributos possíveis.
+    // Focalizar para exibir as descrições dos atributos existentes.
+    // Para obter mais informações, acesse: https://go.microsoft.com/fwlink/?linkid=830387
+    "configurations": [
+        {
+            "type": "java",
+            "name": "InterfaceGrafica",
+            "request": "launch",
+            "mainClass": "Interface.InterfaceGrafica",
+            "projectName": "interface",
+            "vmArgs": "--module-path \"C:/Program Files/Java/javafx-sdk-19/lib\" --add-modules javafx.controls,javafx.fxml"
+        },
+    ]
+}

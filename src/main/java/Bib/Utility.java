@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import ClassesBase.Categoria;
 import ClassesBase.VetorCategoria;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;

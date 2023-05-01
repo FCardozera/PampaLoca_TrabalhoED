@@ -17,16 +17,10 @@ import javafx.scene.layout.VBox;
 
 public class MenuCategoriaTela implements Initializable{
    @FXML
-    private TextField CNHCliente;
+    private TextField identificadorCategoria;
 
     @FXML
-    private TextField CPFCliente;
-
-    @FXML
-    private TextField TelefoneCliente;
-
-    @FXML
-    private TextField nomeCliente;
+    private TextField nomeCategoria;
 
     @FXML
     private Button removerCliente;
@@ -77,68 +71,48 @@ public class MenuCategoriaTela implements Initializable{
      */
     @FXML
     void cadastrarCliente(ActionEvent event) {
-        String nCarteira = null;
-        String cpf = null;
-        String nome = null;
-        String telefone = null;
+        // String nCarteira = null;
+        // String cpf = null;
+        // String nome = null;
+        // String telefone = null;
 
-        try {
-            cpf = Utility.lerCPF(CPFCliente.getText());
-            if(vetorClientes.contemCPF(cpf)) {
-                throw new InputMismatchException();
-            }
-        } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro!");
-            alert.setHeaderText(null);
-            alert.setContentText("CPF inválido ou já existente!");
-            alert.showAndWait();
-        }
+        // try {
+        //     cpf = Utility.lerCPF(CPFCliente.getText());
+        //     if(vetorClientes.contemCPF(cpf)) {
+        //         throw new InputMismatchException();
+        //     }
+        // } catch (Exception e) {
+        //     Alert alert = new Alert(Alert.AlertType.ERROR);
+        //     alert.setTitle("Erro!");
+        //     alert.setHeaderText(null);
+        //     alert.setContentText("CPF inválido ou já existente!");
+        //     alert.showAndWait();
+        // }
 
-        try {
-            nCarteira = Utility.lerNCarteira(CNHCliente.getText());
-        } catch (InputMismatchException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro!");
-            alert.setHeaderText(null);
-            alert.setContentText("CNH inválida!");
-            alert.showAndWait();
-        }
+        // try {
+        //     nome = Utility.lerNome(nomeCliente.getText());
+        // } catch (InputMismatchException e) {
+        //     Alert alert = new Alert(Alert.AlertType.ERROR);
+        //     alert.setTitle("Erro!");
+        //     alert.setHeaderText(null);
+        //     alert.setContentText("Nome inválido (APENAS LETRAS)!");
+        //     alert.showAndWait();
+        // }
 
-        try {
-            nome = Utility.lerNome(nomeCliente.getText());
-        } catch (InputMismatchException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro!");
-            alert.setHeaderText(null);
-            alert.setContentText("Nome inválido (APENAS LETRAS)!");
-            alert.showAndWait();
-        }
+        // Cliente cliente = new Cliente(nome, cpf, nCarteira, telefone);
 
-        try {
-            telefone = Utility.lerTelefone(TelefoneCliente.getText());
-        } catch (InputMismatchException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro!");
-            alert.setHeaderText(null);
-            alert.setContentText("Telefone inválido!");
-            alert.showAndWait();
-        }
+        // if(!(telefone.equals(null) || nome.equals(null) || cpf.equals(null) || nCarteira.equals(null))) {
+        //     vetorClientes.adiciona(cliente);
+        // }
 
-        Cliente cliente = new Cliente(nome, cpf, nCarteira, telefone);
-
-        if(!(telefone.equals(null) || nome.equals(null) || cpf.equals(null) || nCarteira.equals(null))) {
-            vetorClientes.adiciona(cliente);
-        }
-
-        if (vetorClientes.contemCPF(cpf)) {
-            limparCampos(null);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Operação concluída!");
-            alert.setHeaderText(null);
-            alert.setContentText("Cliente adicionado com sucesso!");
-            alert.showAndWait();
-        }
+        // if (vetorClientes.contemCPF(cpf)) {
+        //     limparCampos(null);
+        //     Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        //     alert.setTitle("Operação concluída!");
+        //     alert.setHeaderText(null);
+        //     alert.setContentText("Cliente adicionado com sucesso!");
+        //     alert.showAndWait();
+        // }
     }
 
     
@@ -152,27 +126,27 @@ public class MenuCategoriaTela implements Initializable{
      */
     @FXML
     void removerCliente(ActionEvent event) {
-        String cpf = null;
+        // String cpf = null;
         
-        try {
-            cpf = Utility.lerCPF(CPFCliente.getText());
-            if(vetorClientes.removeCPF(cpf)) {
-                limparCampos(null);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Operação concluída!");
-                alert.setHeaderText(null);
-                alert.setContentText("Cliente removido com sucesso!");
-                alert.showAndWait();
-            } else {
-                throw new NullPointerException();
-            }
-        } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro!");
-            alert.setHeaderText(null);
-            alert.setContentText("CPF inválido ou não existente no sistema!");
-            alert.showAndWait();
-        }
+        // try {
+        //     cpf = Utility.lerCPF(CPFCliente.getText());
+        //     if(vetorClientes.removeCPF(cpf)) {
+        //         limparCampos(null);
+        //         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        //         alert.setTitle("Operação concluída!");
+        //         alert.setHeaderText(null);
+        //         alert.setContentText("Cliente removido com sucesso!");
+        //         alert.showAndWait();
+        //     } else {
+        //         throw new NullPointerException();
+        //     }
+        // } catch (Exception e) {
+        //     Alert alert = new Alert(Alert.AlertType.ERROR);
+        //     alert.setTitle("Erro!");
+        //     alert.setHeaderText(null);
+        //     alert.setContentText("CPF inválido ou não existente no sistema!");
+        //     alert.showAndWait();
+        // }
     }
 
     
@@ -187,32 +161,32 @@ public class MenuCategoriaTela implements Initializable{
      */
     @FXML
     void verificarCliente(ActionEvent event) {
-        String cpf = null;
+        // String cpf = null;
 
-        try {
-            cpf = Utility.lerCPF(CPFCliente.getText());
-            if (vetorClientes.contemCPF(cpf)) {
-                limparCampos(null);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Operação concluída!");
-                alert.setHeaderText(null);
-                alert.setContentText("O cliente de CPF: " + Utility.escreverCPF(cpf) + ", está cadastrado no sistema!");
-                alert.showAndWait();
-            } else {
-                limparCampos(null);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Operação concluída!");
-                alert.setHeaderText(null);
-                alert.setContentText("O CPF: " + Utility.escreverCPF(cpf) + ", não encontra-se cadastrado no sistema!");
-                alert.showAndWait();
-            }
-        } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro!");
-            alert.setHeaderText(null);
-            alert.setContentText("CPF inválido!");
-            alert.showAndWait();
-        }
+        // try {
+        //     cpf = Utility.lerCPF(CPFCliente.getText());
+        //     if (vetorClientes.contemCPF(cpf)) {
+        //         limparCampos(null);
+        //         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        //         alert.setTitle("Operação concluída!");
+        //         alert.setHeaderText(null);
+        //         alert.setContentText("O cliente de CPF: " + Utility.escreverCPF(cpf) + ", está cadastrado no sistema!");
+        //         alert.showAndWait();
+        //     } else {
+        //         limparCampos(null);
+        //         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        //         alert.setTitle("Operação concluída!");
+        //         alert.setHeaderText(null);
+        //         alert.setContentText("O CPF: " + Utility.escreverCPF(cpf) + ", não encontra-se cadastrado no sistema!");
+        //         alert.showAndWait();
+        //     }
+        // } catch (Exception e) {
+        //     Alert alert = new Alert(Alert.AlertType.ERROR);
+        //     alert.setTitle("Erro!");
+        //     alert.setHeaderText(null);
+        //     alert.setContentText("CPF inválido!");
+        //     alert.showAndWait();
+        // }
     }
 
     
@@ -225,10 +199,10 @@ public class MenuCategoriaTela implements Initializable{
      */
     @FXML
     void limparCampos(ActionEvent event) {
-            CNHCliente.clear();
-            CPFCliente.clear();
-            TelefoneCliente.clear();
-            nomeCliente.clear();
+            // CNHCliente.clear();
+            // CPFCliente.clear();
+            // TelefoneCliente.clear();
+            // nomeCliente.clear();
     }
 
     
@@ -241,12 +215,12 @@ public class MenuCategoriaTela implements Initializable{
      */
     @FXML
     void menuDadosClientes(ActionEvent event) {
-        try {
-            VBox VBoxMenuDadosClientes = FXMLLoader.load(getClass().getResource("MenuDadosClientes.fxml"));
-            rootVBox2.getChildren().setAll(VBoxMenuDadosClientes);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        // try {
+        //     VBox VBoxMenuDadosClientes = FXMLLoader.load(getClass().getResource("MenuDadosClientes.fxml"));
+        //     rootVBox2.getChildren().setAll(VBoxMenuDadosClientes);
+        // } catch (Exception e) {
+        //     System.out.println(e);
+        // }
     }
 
     
