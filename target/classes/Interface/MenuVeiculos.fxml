@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox fx:id="rootVBox2" prefHeight="400.0" prefWidth="640.0" style="-fx-border-width: 2;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.MenuVeiculosTela">
+  <children>
+      <Pane prefHeight="55.0" prefWidth="636.0" style="-fx-background-color: #064532;">
+         <children>
+            <Text fill="WHITE" fontSmoothingType="LCD" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="FAST Veículos" textAlignment="CENTER" textOrigin="TOP" wrappingWidth="640.0">
+               <font>
+                  <Font name="Trebuchet MS Bold" size="45.0" />
+               </font>
+            </Text>
+            <Button fx:id="voltarMenu" layoutX="20.0" layoutY="15.0" mnemonicParsing="false" onAction="#voltarMenu" prefHeight="25.0" prefWidth="36.0" text="&lt;-" />
+            <Button fx:id="dadosVeiculos" layoutX="500.0" layoutY="15.0" mnemonicParsing="false" onAction="#menuDadosVeiculos" text="Veículos Cadastrados" />
+         </children>
+      </Pane>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="334.0" prefWidth="636.0" style="-fx-background-color: #e3e3e5;" VBox.vgrow="ALWAYS">
+      <children>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="345.0" prefWidth="650.0">
+               <children>
+                  <Button fx:id="cadastrarVeiculo" layoutX="54.0" layoutY="298.0" mnemonicParsing="false" onAction="#cadastrarVeiculo" prefHeight="25.0" prefWidth="130.0" text="Cadastrar Veículo" />
+                  <Button fx:id="removerVeiculo" layoutX="286.0" layoutY="298.0" mnemonicParsing="false" onAction="#removerVeiculo" prefHeight="25.0" prefWidth="130.0" text="Remover Veículo" />
+                  <Button fx:id="verificarVeiculo" layoutX="488.0" layoutY="298.0" mnemonicParsing="false" onAction="#verificarVeiculo" prefHeight="25.0" prefWidth="130.0" text="Verificar Veículo" />
+                  <Label layoutX="226.0" layoutY="21.0" text="Placa" />
+                  <Label layoutX="439.0" layoutY="21.0" text="Ano" />
+                  <Label layoutX="209.0" layoutY="66.0" text="Valor Diária" />
+                  <Label layoutX="15.0" layoutY="21.0" text="Veículo" />
+                  <MenuButton fx:id="tipoVeiculo" layoutX="78.0" layoutY="17.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="133.0">
+                    <items>
+                      <MenuItem fx:id="carro" mnemonicParsing="false" onAction="#itemCarro" text="Carro" />
+                      <MenuItem fx:id="caminhao" mnemonicParsing="false" onAction="#itemCaminhao" text="Caminhão" />
+                        <MenuItem fx:id="onibus" mnemonicParsing="false" onAction="#itemOnibus" text="Ônibus" />
+                    </items>
+                  </MenuButton>
+                  <TextField fx:id="placaVeiculo" layoutX="285.0" layoutY="17.0" prefHeight="25.0" prefWidth="132.0" />
+                  <TextField fx:id="anoVeiculo" layoutX="486.0" layoutY="17.0" prefHeight="25.0" prefWidth="133.0" />
+                  <TextField fx:id="diariaVeiculo" layoutX="285.0" layoutY="62.0" prefHeight="25.0" prefWidth="133.0" />
+                  <ImageView fx:id="imgFundo" fitHeight="280.0" fitWidth="392.0" layoutX="122.0" layoutY="61.0" opacity="0.34">
+                     <image>
+                        <Image url="@Design_sem_nome__2_-removebg-preview.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust saturation="-1.0" />
+                     </effect>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Pane fx:id="paneCarro" layoutY="95.0" prefHeight="193.0" prefWidth="640.0" visible="false">
+               <children>
+                  <Label layoutX="14.0" layoutY="39.0" text="Portas" />
+                  <Label layoutX="380.0" layoutY="101.0" prefHeight="17.0" prefWidth="54.0" text="Média Km" />
+                  <Label layoutX="380.0" layoutY="39.0" text="Ar-Condicionado" />
+                  <ChoiceBox fx:id="opcaoArCondCarro" layoutX="487.0" layoutY="35.0" prefHeight="25.0" prefWidth="133.0" />
+                  <TextField fx:id="numPortasVeiculo" layoutX="100.0" layoutY="35.0" prefHeight="25.0" prefWidth="133.0" />
+                  <TextField fx:id="mediaKmVeiculo" layoutX="487.0" layoutY="97.0" prefHeight="25.0" prefWidth="133.0" />
+                  <Label layoutX="14.0" layoutY="101.0" text="Nº Passageiros" />
+                  <TextField fx:id="numPassageirosCarro" layoutX="100.0" layoutY="97.0" prefHeight="25.0" prefWidth="133.0" />
+               </children>
+            </Pane>
+            <Pane fx:id="paneOnibus" layoutY="90.0" prefHeight="199.0" prefWidth="650.0" visible="false">
+               <children>
+                  <Label layoutX="14.0" layoutY="31.0" text="Capacidade" />
+                  <ChoiceBox fx:id="opcaoArCondOnibus" layoutX="490.0" layoutY="27.0" prefHeight="25.0" prefWidth="133.0" />
+                  <Label layoutX="379.0" layoutY="31.0" text="Ar-Condicionado" />
+                  <TextField fx:id="numPassageirosOnibus" layoutX="82.0" layoutY="27.0" prefHeight="25.0" prefWidth="133.0" />
+                  <Label layoutX="14.0" layoutY="82.0" text="Categoria" />
+                  <ChoiceBox fx:id="opcaoInternetOnibus" layoutX="490.0" layoutY="75.0" prefHeight="25.0" prefWidth="133.0" />
+                  <Label layoutX="383.0" layoutY="82.0" text="Internet" />
+                  <ChoiceBox fx:id="categoriaOnibus" layoutX="82.0" layoutY="75.0" prefHeight="25.0" prefWidth="133.0" />
+               </children>
+            </Pane>
+            <Pane fx:id="paneCaminhao" layoutY="98.0" prefHeight="193.0" prefWidth="650.0" visible="false">
+               <children>
+                  <Label layoutX="14.0" layoutY="24.0" text="Carga Máxima" />
+                  <Label layoutX="14.0" layoutY="71.0" text="Nº Eixos" />
+                  <TextField fx:id="numeroEixosCaminhao" layoutX="102.0" layoutY="67.0" prefHeight="25.0" prefWidth="133.0" />
+                  <TextField fx:id="cargaMaxCaminhao" layoutX="102.0" layoutY="20.0" prefHeight="25.0" prefWidth="133.0" />
+               </children>
+            </Pane>
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>
