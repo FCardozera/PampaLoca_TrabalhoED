@@ -1,5 +1,7 @@
 package Bib;
 
+import ClassesBase.*;
+
 public class Noh {
     private Object info;
     private Noh proximo;
@@ -7,6 +9,10 @@ public class Noh {
     public Noh (Object info) {
         this.info = info;
         this.proximo = null;
+    }
+
+    public Locacao getLocacaoInfo() {
+        return (Locacao) info;
     }
 
     public Object getInfo() {

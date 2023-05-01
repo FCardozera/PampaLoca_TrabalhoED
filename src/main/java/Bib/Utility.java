@@ -1,6 +1,17 @@
 package Bib;
 
+import java.util.Calendar;
 import java.util.InputMismatchException;
+import java.util.Scanner;
+
+import ClassesBase.Categoria;
+import ClassesBase.VetorCategoria;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 
 /**
  * Classe que servirá como uma biblioteca para métodos que serão utilizados no projeto.
@@ -121,6 +132,16 @@ public class Utility {
         return nome;
     }
 
+    public static Categoria lerCategoria(String dados, VetorCategoria vetorCategoria) {
+        int categoriaID = 0;
+        categoriaID = lerInteiro(dados);
+
+        if (vetorCategoria.contemId(categoriaID)) {
+            return vetorCategoria.getCategoriaID(categoriaID);
+        }
+        return null;
+    }
+
     /**
      * Método que vai ler a placa do veículo e verificar se é válida.
      * @param dados Mensagem exibida para o usuário.
@@ -198,4 +219,41 @@ public class Utility {
     private static String formataDadosLetras(String dado) {
         return dado.replaceAll("[^A-z\\s\u00C0-\u00FF]+", "");
     }
+
+    /**
+     * Método que lê uma data específica e retorna a mesma.
+     * @param dia O dia.
+     * @param mes O mês.
+     * @param ano O ano.
+     * @return Retorna a data no objeto Calendar.
+     */
+    public static Calendar lerData(int dia, int mes, int ano) {
+        Calendar data = Calendar.getInstance();
+
+        data.clear();
+        data.set(ano, (mes - 1), dia);
+        return data;
+    }
+
+    public static long diferencaDias(Calendar dataUm, Calendar dataDois) {
+        long tempo1 = dataUm.getTimeInMillis();
+        long tempo2 = dataDois.getTimeInMillis();
+
+        long diferenca = tempo2 - tempo1;
+        long dias = diferenca / (24 * 60 * 60 * 1000);
+        return dias;
+    }
+
+    public void lerCsv(String caminhoArquivo) throws FileNotFoundException {
+        File arquivoCsv = new File(caminhoArquivo);
+        Scanner scanner = new Scanner(arquivoCsv);
+    
+        while (scanner.hasNextLine()) {
+            String linha = scanner.nextLine();
+            String[] dados = linha.split(",");
+    
+        }
+        scanner.close();
+    }
+
 }

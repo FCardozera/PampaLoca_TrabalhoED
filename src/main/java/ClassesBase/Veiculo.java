@@ -1,13 +1,13 @@
 package ClassesBase;
 
-public abstract class Veiculo{
-    public String placa;
-    public String modelo;
-    public int ano;
-    public int potencia;
-    public int lugares;
-    public String marca;
-    public Categoria categoria;
+public class Veiculo{
+    private String placa;
+    private String modelo;
+    private int ano;
+    private int potencia;
+    private int lugares;
+    private String marca;
+    private Categoria categoria;
 
 
 

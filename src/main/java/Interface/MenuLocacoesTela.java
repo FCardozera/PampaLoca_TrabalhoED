@@ -5,13 +5,13 @@ import java.util.Calendar;
 import java.util.InputMismatchException;
 import java.util.ResourceBundle;
 
-import ClassesBase.BibMetodos;
+import ClassesBase.*;
+import Bib.*;
 import ClassesBase.Cliente;
-import ClassesBase.ListClientes;
-import ClassesBase.ListLocacoes;
 import ClassesBase.Locacao;
 import ClassesBase.Veiculo;
-import ClassesBase.ListVeiculos;
+import ClassesBase.VetorClientes;
+import ClassesBase.ListaLocacoes;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -57,11 +57,6 @@ public class MenuLocacoesTela implements Initializable {
     private String[] opcaoAno = { "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030" };
 
     @FXML
-    private ChoiceBox<String> seguroLocacao;
-
-    private String[] opcaoSeguros = { "Sim", "Não" };
-
-    @FXML
     private TextField codigoLocacao;
 
     @FXML
@@ -85,9 +80,9 @@ public class MenuLocacoesTela implements Initializable {
     @FXML
     private VBox rootVBox2;
 
-    private ListClientes listaClientes;
-    private ListVeiculos listaVeiculos;
-    private ListLocacoes listaLocacoes;
+    private VetorVeiculos vetorVeiculos;
+    private ListaLocacoes listaLocacoes;
+    private VetorClientes vetorClientes;
 
     /**
      * Inicializa a lista de Veículos da locadora de veículos.
@@ -102,12 +97,11 @@ public class MenuLocacoesTela implements Initializable {
      */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        listaClientes = LocadoraVeiculos.getListaClientes();
-        listaVeiculos = LocadoraVeiculos.getListaVeiculos();
+        vetorVeiculos = LocadoraVeiculos.getVetorVeiculos();
         listaLocacoes = LocadoraVeiculos.getListaLocacoes();
+        vetorClientes = LocadoraVeiculos.getVetorClientes();
         codigoLocacaoLabel.setVisible(false);
         codigoLocacao.setVisible(false);
-        seguroLocacao.getItems().addAll(opcaoSeguros);
         diaInicio.getItems().addAll(opcaoDia);
         diaFinal.getItems().addAll(opcaoDia);
         mesInicio.getItems().addAll(opcaoMes);
@@ -116,6 +110,7 @@ public class MenuLocacoesTela implements Initializable {
         anoFinal.getItems().addAll(opcaoAno);
         limparCampos(null);
     }
+
 
     /**
      * Método de cadastro de uma nova locação no sistema; Solicita ao usuário
@@ -141,12 +136,10 @@ public class MenuLocacoesTela implements Initializable {
         Calendar dataAtual = Calendar.getInstance();
         Calendar dataInicio = null;
         Calendar dataFim = null;
-        boolean seguro = false;
-        String opcaoSeguro = null;
 
         try {
-            cpf = BibMetodos.lerCPF(cpfCliente.getText());
-            if (!listaClientes.existe(cpf)) {
+            cpf = Utility.lerCPF(cpfCliente.getText());
+            if (!vetorClientes.contemCPF(cpf)) {
                 throw new InputMismatchException();
             }
         } catch (Exception e) {
@@ -158,8 +151,8 @@ public class MenuLocacoesTela implements Initializable {
         }
 
         try {
-            placa = BibMetodos.lerPlaca(placaVeiculo.getText());
-            if (!listaVeiculos.existe(placa)) {
+            placa = Utility.lerPlaca(placaVeiculo.getText());
+            if (!vetorVeiculos.contemPlaca(placa)) {
                 throw new InputMismatchException();
             }
         } catch (Exception e) {
@@ -170,22 +163,17 @@ public class MenuLocacoesTela implements Initializable {
             alert.showAndWait();
         }
 
-        cliente = listaClientes.get(cpf);
+        cliente = vetorClientes.getCliente(cpf);
 
-        veiculo = listaVeiculos.get(placa);
+        veiculo = vetorVeiculos.getVeiculo(placa);
 
         try {
-            dataInicio = BibMetodos.lerData(Integer.parseInt(diaInicio.getValue()),
+            dataInicio = Utility.lerData(Integer.parseInt(diaInicio.getValue()),
                     Integer.parseInt(mesInicio.getValue()), Integer.parseInt(anoInicio.getValue()));
-            dataFim = BibMetodos.lerData(Integer.parseInt(diaFinal.getValue()), Integer.parseInt(mesFinal.getValue()),
+            dataFim = Utility.lerData(Integer.parseInt(diaFinal.getValue()), Integer.parseInt(mesFinal.getValue()),
                     Integer.parseInt(anoFinal.getValue()));
 
-            if (((dataInicio.get(Calendar.DAY_OF_MONTH) <= dataAtual.get(Calendar.DAY_OF_MONTH)
-            && dataInicio.get(Calendar.MONTH) <= dataAtual.get(Calendar.MONTH) 
-            && dataInicio.get(Calendar.YEAR) <= dataAtual.get(Calendar.YEAR)) || 
-            (dataFim.get(Calendar.DAY_OF_MONTH) < dataInicio.get(Calendar.DAY_OF_MONTH) 
-            && dataFim.get(Calendar.MONTH) <= dataInicio.get(Calendar.MONTH) 
-            && dataFim.get(Calendar.YEAR) <= dataInicio.get(Calendar.YEAR)))) {
+            if (Utility.diferencaDias(dataInicio, dataFim) <= 0) {
                 throw new InputMismatchException();
             }
 
@@ -196,32 +184,14 @@ public class MenuLocacoesTela implements Initializable {
             alert.setContentText("Data inválida! Tente novamente!");
             alert.showAndWait();
         }
-
-        opcaoSeguro = seguroLocacao.getValue();
-
-        try {
-            if (opcaoSeguro.equals("Selecione...")) {
-                throw new NullPointerException();
-            } else if (opcaoSeguro.equals("Sim")) {
-                seguro = true;
-            }
-        } catch (NullPointerException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro!");
-            alert.setHeaderText(null);
-            alert.setContentText("Selecione a modalidade do seguro!");
-            alert.showAndWait();
-        }
         
-        Locacao locacao = null;
-
-        if(!(cpf.equals(null) || placa.equals(null) || opcaoSeguro.equals(null) || opcaoSeguro.equals("Selecione...") || dataInicio.before(dataAtual) || dataInicio.equals(null) || dataFim.equals(null))) {
-            locacao = new Locacao(cliente, veiculo, dataInicio, dataFim, seguro);
-            listaLocacoes.add(locacao);
+        Locacao locacao = new Locacao(cliente, veiculo, dataInicio, dataFim);
+        if(!(cpf.equals(null) && placa.equals(null) && dataInicio.before(dataAtual) && dataInicio.equals(null) && dataFim.equals(null))) {
+            listaLocacoes.insereFim(locacao);
         }
         
         if (locacao != null) {
-            if(listaLocacoes.existe(locacao.getCodigo())) {
+            if(listaLocacoes.contemCodigo(locacao.getCodigo())) {
                 limparCampos(null);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Operação concluída!");
@@ -246,7 +216,7 @@ public class MenuLocacoesTela implements Initializable {
 
         if (codigoLocacao.isVisible()) {
             try {
-                codigo = BibMetodos.lerInteiro(codigoLocacao.getText());
+                codigo = Utility.lerInteiro(codigoLocacao.getText());
                 if (listaLocacoes.remove(codigo)) {
                     limparCampos(null);
                     codigoLocacao.setVisible(false);
@@ -285,8 +255,8 @@ public class MenuLocacoesTela implements Initializable {
 
         if (codigoLocacao.isVisible()) {
             try {
-                codigo = BibMetodos.lerInteiro(codigoLocacao.getText());
-                if (listaLocacoes.existe(codigo)) {
+                codigo = Utility.lerInteiro(codigoLocacao.getText());
+                if (listaLocacoes.contemCodigo(codigo)) {
                     limparCampos(null);
                     codigoLocacao.setVisible(false);
                     codigoLocacaoLabel.setVisible(false);
@@ -327,7 +297,6 @@ public class MenuLocacoesTela implements Initializable {
         codigoLocacao.clear();
         cpfCliente.clear();
         placaVeiculo.clear();
-        seguroLocacao.setValue("Selecione...");
         diaInicio.setValue("Dia");
         diaFinal.setValue("Dia");
         mesInicio.setValue("Mês");

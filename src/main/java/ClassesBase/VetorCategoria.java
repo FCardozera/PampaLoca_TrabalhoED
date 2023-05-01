@@ -25,6 +25,29 @@ public class VetorCategoria implements IVetor{
         
     }
 
+    public Categoria[] getCategoria() {
+        return categorias;
+    }
+
+    public Categoria getCategoriaID(int identificador) {
+        for (int i = 0; i < this.tamanhoAtual; i++) {
+            if (categorias[i].getIdentificador() == identificador) {
+                return categorias[i];
+            }
+        }
+        return null;
+    }
+
+    public boolean contemId(int identificador) {
+        for (int i = 0; i < this.tamanhoAtual; i++) {
+            if (categorias[i].getIdentificador() == identificador) {
+                return true;
+            }
+        }
+        return false;
+        
+    }
+
     public boolean contem(Object objeto) {
         for (int i = 0; i < this.tamanhoAtual; i++) {
             if (categorias[i].equals(objeto)) {
@@ -41,6 +64,25 @@ public class VetorCategoria implements IVetor{
         }
         return false;
         
+    }
+
+    public boolean removeId(int identificador) {
+        int index = -1;
+        for (int i = 0; i < this.categorias.length; i++) {
+            if (categorias[i].getIdentificador() == identificador) {
+                index = i;
+                break;
+            }
+        }
+        if (index != -1) {
+            for (int i = index; i < (tamanhoAtual - 1); i++) {
+                this.categorias[i] = this.categorias[i + 1];
+            }
+            this.tamanhoAtual--;
+            this.categorias[tamanhoAtual] = null;
+            return true;
+        }
+        return false;
     }
 
     public boolean remove(Object objeto) {

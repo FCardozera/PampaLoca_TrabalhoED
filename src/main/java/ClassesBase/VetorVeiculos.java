@@ -24,6 +24,28 @@ public class VetorVeiculos implements IVetor{
         return tamanhoAtual;
     }
 
+    public Veiculo[] getVeiculos() {
+        return veiculos;
+    }
+
+    public Veiculo getVeiculo(String placa) {
+        for (int i = 0; i < this.tamanhoAtual; i++) {
+            if (veiculos[i].getPlaca().equals(placa)) {
+                return veiculos[i];
+            }
+        }
+        return null;
+    }
+
+    public boolean contemPlaca(String placa) {
+        for (int i = 0; i < this.tamanhoAtual; i++) {
+            if (veiculos[i].getPlaca().equals(placa)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean contem(Object objeto) {
         for (int i = 0; i < this.tamanhoAtual; i++) {
             if (veiculos[i].equals(objeto)) {
@@ -45,6 +67,25 @@ public class VetorVeiculos implements IVetor{
 
     public boolean cheio() {
         if (this.tamanhoAtual == this.tamanhoVetor) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean removePlaca(String placa) {
+        int index = -1;
+        for (int i = 0; i < this.veiculos.length; i++) {
+            if (veiculos[i].getPlaca().equals(placa)) {
+                index = i;
+                break;
+            }
+        }
+        if (index != -1) {
+            for (int i = index; i < (tamanhoAtual - 1); i++) {
+                this.veiculos[i] = this.veiculos[i + 1];
+            }
+            this.tamanhoAtual--;
+            this.veiculos[tamanhoAtual] = null;
             return true;
         }
         return false;

@@ -15,7 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
 
 
-public class MenuClientesTela implements Initializable{
+public class MenuCategoriaTela implements Initializable{
    @FXML
     private TextField CNHCliente;
 
@@ -38,7 +38,7 @@ public class MenuClientesTela implements Initializable{
     private Button verificarCliente;
 
     @FXML
-    private Button dadosClientes;
+    private Button dadosCategorias;
 
     @FXML
     private Button voltarMenu;

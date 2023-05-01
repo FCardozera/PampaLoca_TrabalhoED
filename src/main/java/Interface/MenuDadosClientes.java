@@ -2,9 +2,7 @@ package Interface;
 
 import java.util.List;
 
-import ClassesBase.BibMetodos;
-import ClassesBase.Cliente;
-import ClassesBase.ListClientes;
+import ClassesBase.*;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;

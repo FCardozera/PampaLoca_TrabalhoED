@@ -32,11 +32,16 @@ public class InterfaceGrafica extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Interface.fxml"));
         Scene scene = new Scene(root);
+        VetorCategoria vetorCategoria = new VetorCategoria(15);
         VetorClientes vetorClientes = new VetorClientes(15);
         ListaLocacoes listaLocacoes = new ListaLocacoes();
-        VetorVeiculos listaVeiculos = new VetorVeiculos(15);
+        VetorVeiculos vetorVeiculos = new VetorVeiculos(15);
+        // a leitura fica aqui embaixo
+
+
+        LocadoraVeiculos.setVetorCategoria(vetorCategoria);
         LocadoraVeiculos.setVetorClientes(vetorClientes);
-        LocadoraVeiculos.setVetorVeiculos(listaVeiculos);
+        LocadoraVeiculos.setVetorVeiculos(vetorVeiculos);
         LocadoraVeiculos.setListaLocacoes(listaLocacoes);
         primaryStage.setScene(scene);
         primaryStage.show();

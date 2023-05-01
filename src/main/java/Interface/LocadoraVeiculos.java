@@ -9,9 +9,11 @@ import javafx.scene.layout.VBox;
 
 public class LocadoraVeiculos {
 
+    private static VetorCategoria vetorCategoria;
     private static VetorClientes vetorClientes;
     private static VetorVeiculos vetorVeiculos;
     private static ListaLocacoes listaLocacoes;
+    
 
    
     @FXML
@@ -22,6 +24,9 @@ public class LocadoraVeiculos {
 
     @FXML
     private Button campo_MenuLocacoes;
+
+    @FXML
+    private Button campo_MenuCategorias;
 
     @FXML
     private VBox rootVBox;
@@ -38,6 +43,21 @@ public class LocadoraVeiculos {
         try {
             VBox VBoxMenuClientes = FXMLLoader.load(getClass().getResource("MenuClientes.fxml"));
             rootVBox.getChildren().setAll(VBoxMenuClientes);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    /** 
+     * Carrega o arquivo "MenuCategoria.fxml" e o atribui ao objeto "VBoxMenuCategoria"
+     * Remove os elementos filhos do objeto "rootVBox" e adiciona o "VBoxMenuCategoria como um novo filho"
+     * @param event Determina a a��o de acessar o MenuCategoria
+     */
+    @FXML
+    void AcessarMenuCategorias(ActionEvent event) {
+        try {
+            VBox VBoxMenuCategoria = FXMLLoader.load(getClass().getResource("MenuCategoria.fxml"));
+            rootVBox.getChildren().setAll(VBoxMenuCategoria);
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -82,6 +102,14 @@ public class LocadoraVeiculos {
      */
     public static void setVetorClientes(VetorClientes vetorClientesNova) {
         vetorClientes = vetorClientesNova;
+    }
+
+    public static void setVetorCategoria(VetorCategoria vetorCategoria) {
+        LocadoraVeiculos.vetorCategoria = vetorCategoria;
+    }
+
+    public static VetorCategoria getVetorCategoria() {
+        return vetorCategoria;
     }
 
     

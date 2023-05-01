@@ -41,6 +41,52 @@ public class ListaLocacoes implements ILista {
         return false;
     }
 
+    public Locacao getLocacao(int codigo) {
+        Noh p;
+
+        p = inicio;
+        while (p != null && p.getLocacaoInfo().getCodigo() != codigo) {
+            p = p.getProximo();
+        }
+        if (p == null) {
+            return null;
+        }
+        return p.getLocacaoInfo();
+    }
+
+    public boolean contemCodigo(int codigo) {
+        Noh p;
+
+        p = inicio;
+        while (p != null && p.getLocacaoInfo().getCodigo() != codigo) {
+            p = p.getProximo();
+        }
+        if (p == null) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean removeCodigo(int codigo) {
+        Noh ant, p;
+
+        ant = null;
+        p = inicio;
+        while (p != null && p.getLocacaoInfo().getCodigo() != codigo) {
+            ant = p;
+            p = p.getProximo();
+        }
+        if (p == null) {
+            return false;
+        }
+        if (ant == null) {
+            inicio = p.getProximo();
+        } else {
+            ant.setProximo(p.getProximo());
+        }
+        return true;
+    }
+
     public boolean remove(Object objeto) {
         Noh ant, p;
 
