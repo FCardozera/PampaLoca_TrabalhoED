@@ -6,10 +6,10 @@ package ClassesBase;
  */
 
 public class Categoria {
-    private String nome;
     private int identificador;
+    private String nome;
 
-    public Categoria(String nome, int identificador) {
+    public Categoria(int identificador, String nome) {
         this.nome = nome;
         this.identificador = identificador;
     }

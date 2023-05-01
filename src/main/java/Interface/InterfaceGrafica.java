@@ -1,5 +1,6 @@
 package Interface;
 
+import Bib.Utility;
 import ClassesBase.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -36,12 +37,13 @@ public class InterfaceGrafica extends Application {
         VetorClientes vetorClientes = new VetorClientes(15);
         ListaLocacoes listaLocacoes = new ListaLocacoes();
         VetorVeiculos vetorVeiculos = new VetorVeiculos(15);
-        // a leitura fica aqui embaixo
+        
+        vetorCategoria = Utility.lerArquivoCategoria("src/main/java/db/Categorias.csv");
+        vetorVeiculos = Utility.lerArquivoVeiculos("src/main/java/db/Veiculos.csv", vetorCategoria);
 
-
-        LocadoraVeiculos.setVetorCategoria(vetorCategoria);
         LocadoraVeiculos.setVetorClientes(vetorClientes);
         LocadoraVeiculos.setVetorVeiculos(vetorVeiculos);
+        LocadoraVeiculos.setVetorCategoria(vetorCategoria);
         LocadoraVeiculos.setListaLocacoes(listaLocacoes);
         primaryStage.setScene(scene);
         primaryStage.show();

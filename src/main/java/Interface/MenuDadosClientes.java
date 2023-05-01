@@ -1,27 +1,27 @@
-// package Interface;
+//  package Interface;
 
-// import java.util.List;
+//  import java.util.List;
 
-// import ClassesBase.*;
-// import javafx.beans.property.SimpleObjectProperty;
-// import javafx.beans.value.ObservableValue;
-// import javafx.collections.FXCollections;
-// import javafx.collections.ObservableList;
-// import javafx.event.ActionEvent;
-// import javafx.fxml.FXML;
-// import javafx.fxml.FXMLLoader;
-// import javafx.scene.control.Alert;
-// import javafx.scene.control.Button;
-// import javafx.scene.control.Label;
-// import javafx.scene.control.TableColumn;
-// import javafx.scene.control.TableView;
-// import javafx.scene.control.TextField;
-// import javafx.scene.control.TableColumn.CellDataFeatures;
-// import javafx.scene.control.cell.PropertyValueFactory;
-// import javafx.scene.layout.VBox;
-// import javafx.util.Callback;
+//  import ClassesBase.*;
+//  import javafx.beans.property.SimpleObjectProperty;
+//  import javafx.beans.value.ObservableValue;
+//  import javafx.collections.FXCollections;
+//  import javafx.collections.ObservableList;
+//  import javafx.event.ActionEvent;
+//  import javafx.fxml.FXML;
+//  import javafx.fxml.FXMLLoader;
+//  import javafx.scene.control.Alert;
+//  import javafx.scene.control.Button;
+//  import javafx.scene.control.Label;
+//  import javafx.scene.control.TableColumn;
+//  import javafx.scene.control.TableView;
+//  import javafx.scene.control.TextField;
+//  import javafx.scene.control.TableColumn.CellDataFeatures;
+//  import javafx.scene.control.cell.PropertyValueFactory;
+//  import javafx.scene.layout.VBox;
+//  import javafx.util.Callback;
 
-// public class MenuDadosClientes {
+//  public class MenuDadosClientes {
 
 //     @FXML
 //     private Button btnBuscarCliente;
@@ -98,8 +98,8 @@
 //     @FXML
 //     private TextField textFieldBuscarCliente;
 
-//     @FXML
-//     private Button voltarMenuClientes;
+    // @FXML
+    //  private Button voltarMenuClientes;
 
 //     private boolean mostrarEsconderInfoPesquisa = true;
 //     private boolean mostrarEsconderInfoCompleta = true;
@@ -414,4 +414,4 @@
 //         labelCpfPesquisar.setVisible(false);
 //         btnBuscarCliente.setVisible(false);
 //     }
-// }
+//  }

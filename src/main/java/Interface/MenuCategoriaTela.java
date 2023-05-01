@@ -23,13 +23,13 @@ public class MenuCategoriaTela implements Initializable{
     private TextField nomeCategoria;
 
     @FXML
-    private Button removerCliente;
+    private Button removerCategoria;
 
     @FXML
-    private Button cadastrarCliente;
+    private Button cadastrarCategoria;
 
     @FXML
-    private Button verificarCliente;
+    private Button verificarCategoria;
 
     @FXML
     private Button dadosCategorias;
@@ -40,7 +40,7 @@ public class MenuCategoriaTela implements Initializable{
     @FXML
     private VBox rootVBox2;
 
-    private VetorClientes vetorClientes;
+    private VetorCategoria vetorCategoria;
 
     
     /** 
@@ -52,7 +52,7 @@ public class MenuCategoriaTela implements Initializable{
      */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        vetorClientes = LocadoraVeiculos.getVetorClientes();
+        vetorCategoria = LocadoraVeiculos.getVetorCategoria();
         limparCampos(null);
     }
 
@@ -70,49 +70,49 @@ public class MenuCategoriaTela implements Initializable{
      * @param event
      */
     @FXML
-    void cadastrarCliente(ActionEvent event) {
-        // String nCarteira = null;
-        // String cpf = null;
-        // String nome = null;
-        // String telefone = null;
+    void cadastrarCategoria(ActionEvent event) {
+        String nome = null;
+        int identificador = 0;
 
-        // try {
-        //     cpf = Utility.lerCPF(CPFCliente.getText());
-        //     if(vetorClientes.contemCPF(cpf)) {
-        //         throw new InputMismatchException();
-        //     }
-        // } catch (Exception e) {
-        //     Alert alert = new Alert(Alert.AlertType.ERROR);
-        //     alert.setTitle("Erro!");
-        //     alert.setHeaderText(null);
-        //     alert.setContentText("CPF inválido ou já existente!");
-        //     alert.showAndWait();
-        // }
+        try {
+            identificador = Utility.lerInteiro(identificadorCategoria.getText());
+            if (vetorCategoria.tamanho() != 0) {
+                if (vetorCategoria.contemId(identificador)) {
+                    throw new InputMismatchException();
+                }
+            }
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro!");
+            alert.setHeaderText(null);
+            alert.setContentText("Identificador inválido ou já existente!");
+            alert.showAndWait();
+        }
 
-        // try {
-        //     nome = Utility.lerNome(nomeCliente.getText());
-        // } catch (InputMismatchException e) {
-        //     Alert alert = new Alert(Alert.AlertType.ERROR);
-        //     alert.setTitle("Erro!");
-        //     alert.setHeaderText(null);
-        //     alert.setContentText("Nome inválido (APENAS LETRAS)!");
-        //     alert.showAndWait();
-        // }
+        try {
+            nome = Utility.lerNome(nomeCategoria.getText());
+        } catch (InputMismatchException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro!");
+            alert.setHeaderText(null);
+            alert.setContentText("Nome inválido (APENAS LETRAS)!");
+            alert.showAndWait();
+        }
 
-        // Cliente cliente = new Cliente(nome, cpf, nCarteira, telefone);
+        Categoria categoria = new Categoria(identificador, nome);
 
-        // if(!(telefone.equals(null) || nome.equals(null) || cpf.equals(null) || nCarteira.equals(null))) {
-        //     vetorClientes.adiciona(cliente);
-        // }
+        if(nome != null && identificador == 0) {
+            vetorCategoria.adiciona(categoria);
+        }
 
-        // if (vetorClientes.contemCPF(cpf)) {
-        //     limparCampos(null);
-        //     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        //     alert.setTitle("Operação concluída!");
-        //     alert.setHeaderText(null);
-        //     alert.setContentText("Cliente adicionado com sucesso!");
-        //     alert.showAndWait();
-        // }
+        if (vetorCategoria.contemId(identificador)) {
+            limparCampos(null);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Operação concluída!");
+            alert.setHeaderText(null);
+            alert.setContentText("Cliente adicionado com sucesso!");
+            alert.showAndWait();
+        }
     }
 
     
@@ -125,28 +125,28 @@ public class MenuCategoriaTela implements Initializable{
      * Caso não encontre o PCF, é exibida uma mensagem de erro.
      */
     @FXML
-    void removerCliente(ActionEvent event) {
-        // String cpf = null;
+    void removerCategoria(ActionEvent event) {
+        int identificador = 0;
         
-        // try {
-        //     cpf = Utility.lerCPF(CPFCliente.getText());
-        //     if(vetorClientes.removeCPF(cpf)) {
-        //         limparCampos(null);
-        //         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        //         alert.setTitle("Operação concluída!");
-        //         alert.setHeaderText(null);
-        //         alert.setContentText("Cliente removido com sucesso!");
-        //         alert.showAndWait();
-        //     } else {
-        //         throw new NullPointerException();
-        //     }
-        // } catch (Exception e) {
-        //     Alert alert = new Alert(Alert.AlertType.ERROR);
-        //     alert.setTitle("Erro!");
-        //     alert.setHeaderText(null);
-        //     alert.setContentText("CPF inválido ou não existente no sistema!");
-        //     alert.showAndWait();
-        // }
+        try {
+            identificador = Utility.lerInteiro(identificadorCategoria.getText());
+            if (vetorCategoria.removeId(identificador)) {
+                limparCampos(null);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Operação concluída!");
+                alert.setHeaderText(null);
+                alert.setContentText("Categoria removida com sucesso!");
+                alert.showAndWait();
+            } else {
+                throw new NullPointerException();
+            }
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro!");
+            alert.setHeaderText(null);
+            alert.setContentText("Identificador inválido ou não existente no sistema!");
+            alert.showAndWait();
+        }
     }
 
     
@@ -160,33 +160,34 @@ public class MenuCategoriaTela implements Initializable{
      *
      */
     @FXML
-    void verificarCliente(ActionEvent event) {
-        // String cpf = null;
+    void verificarCategoria(ActionEvent event) {
+        int identificador = 0;
 
-        // try {
-        //     cpf = Utility.lerCPF(CPFCliente.getText());
-        //     if (vetorClientes.contemCPF(cpf)) {
-        //         limparCampos(null);
-        //         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        //         alert.setTitle("Operação concluída!");
-        //         alert.setHeaderText(null);
-        //         alert.setContentText("O cliente de CPF: " + Utility.escreverCPF(cpf) + ", está cadastrado no sistema!");
-        //         alert.showAndWait();
-        //     } else {
-        //         limparCampos(null);
-        //         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        //         alert.setTitle("Operação concluída!");
-        //         alert.setHeaderText(null);
-        //         alert.setContentText("O CPF: " + Utility.escreverCPF(cpf) + ", não encontra-se cadastrado no sistema!");
-        //         alert.showAndWait();
-        //     }
-        // } catch (Exception e) {
-        //     Alert alert = new Alert(Alert.AlertType.ERROR);
-        //     alert.setTitle("Erro!");
-        //     alert.setHeaderText(null);
-        //     alert.setContentText("CPF inválido!");
-        //     alert.showAndWait();
-        // }
+        try {
+            identificador = Utility.lerInteiro(identificadorCategoria.getText());
+            if (vetorCategoria.contemId(identificador)) {
+                limparCampos(null);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Operação concluída!");
+                alert.setHeaderText(null);
+                alert.setContentText("A categoria de identificador: " + identificador + ", está cadastrada no sistema! Nome da Categoria: " + 
+                vetorCategoria.getCategoriaID(identificador).getNome());
+                alert.showAndWait();
+            } else {
+                limparCampos(null);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Operação concluída!");
+                alert.setHeaderText(null);
+                alert.setContentText("A categoria de identificador: " + identificador + ", não encontra-se cadastrada no sistema!");
+                alert.showAndWait();
+            }
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro!");
+            alert.setHeaderText(null);
+            alert.setContentText("Categoria inválida! (APENAS NÚMEROS)");
+            alert.showAndWait();
+        }
     }
 
     
@@ -199,10 +200,8 @@ public class MenuCategoriaTela implements Initializable{
      */
     @FXML
     void limparCampos(ActionEvent event) {
-            // CNHCliente.clear();
-            // CPFCliente.clear();
-            // TelefoneCliente.clear();
-            // nomeCliente.clear();
+            identificadorCategoria.clear();
+            nomeCategoria.clear();
     }
 
     
@@ -214,13 +213,13 @@ public class MenuCategoriaTela implements Initializable{
       *
      */
     @FXML
-    void menuDadosClientes(ActionEvent event) {
-        // try {
-        //     VBox VBoxMenuDadosClientes = FXMLLoader.load(getClass().getResource("MenuDadosClientes.fxml"));
-        //     rootVBox2.getChildren().setAll(VBoxMenuDadosClientes);
-        // } catch (Exception e) {
-        //     System.out.println(e);
-        // }
+    void menuDadosCategorias(ActionEvent event) {
+        try {
+            VBox VBoxMenuDadosClientes = FXMLLoader.load(getClass().getResource("MenuDadosCategorias.fxml"));
+            rootVBox2.getChildren().setAll(VBoxMenuDadosClientes);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     

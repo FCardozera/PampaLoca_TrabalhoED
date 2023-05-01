@@ -2,16 +2,14 @@ package Bib;
 
 import java.util.Calendar;
 import java.util.InputMismatchException;
-import java.util.Scanner;
-
 import ClassesBase.Categoria;
+import ClassesBase.Veiculo;
 import ClassesBase.VetorCategoria;
-
+import ClassesBase.VetorVeiculos;
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+
 
 
 /**
@@ -244,17 +242,50 @@ public class Utility {
         long dias = diferenca / (24 * 60 * 60 * 1000);
         return dias;
     }
-
-    public void lerCsv(String caminhoArquivo) throws FileNotFoundException {
-        File arquivoCsv = new File(caminhoArquivo);
-        Scanner scanner = new Scanner(arquivoCsv);
     
-        while (scanner.hasNextLine()) {
-            String linha = scanner.nextLine();
-            String[] dados = linha.split(",");
-    
+    public static VetorCategoria lerArquivoCategoria(String nomeArquivo) {
+        VetorCategoria vetorCategoria = new VetorCategoria(15);
+        try {
+            BufferedReader leitor = new BufferedReader(new FileReader(nomeArquivo));
+            String linha = null;
+            leitor.readLine();
+            while ((linha = leitor.readLine()) != null) {
+                String[] valores = linha.split(";");
+                int identificador = Integer.parseInt(valores[0]);
+                String nome = valores[1];
+                Categoria categoria = new Categoria(identificador, nome);
+                vetorCategoria.adiciona(categoria);
+            }
+            leitor.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        scanner.close();
+        return vetorCategoria;
     }
-
+    
+    public static VetorVeiculos lerArquivoVeiculos(String nomeArquivo, VetorCategoria vetorCategoria) {
+        VetorVeiculos vetorVeiculos = new VetorVeiculos(15);
+        try {
+            BufferedReader leitor = new BufferedReader(new FileReader(nomeArquivo));
+            String linha = null;
+            leitor.readLine();
+            while ((linha = leitor.readLine()) != null) {
+                String[] valores = linha.split(";");
+                String placa = valores[0];
+                String modelo = valores[1];
+                String marca = valores[2];
+                int ano = Integer.parseInt(valores[3]);
+                int potencia = Integer.parseInt(valores[4]);
+                int lugares = Integer.parseInt(valores[5]);
+                int identificadorCategoria = Integer.parseInt(valores[6]);
+                Categoria categoria = vetorCategoria.getCategoriaID(identificadorCategoria);
+                Veiculo veiculo = new Veiculo(placa, modelo, marca, ano, potencia, lugares, categoria);
+                vetorVeiculos.adiciona(veiculo);
+            }
+            leitor.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return vetorVeiculos;
+    }
 }

@@ -113,9 +113,9 @@ public class VetorVeiculos implements IVetor{
     public String imprimeVetor() {
         String imprime = null;
 
-        if(!veiculos[0].equals(null)) {
-            for (Veiculo veiculo : veiculos) {
-            imprime += veiculo.toString();
+        if(veiculos[0] != null) {
+            for (int i = 0; i < this.veiculos.length; i++) {
+            imprime += veiculos[i].toString();
             }
         }
         return imprime;

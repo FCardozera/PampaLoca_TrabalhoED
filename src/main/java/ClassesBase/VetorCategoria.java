@@ -14,7 +14,7 @@ public class VetorCategoria implements IVetor{
 
     public void adiciona(Object objeto) {
         this.garanteEspaco();
-        if (objeto instanceof Cliente) {
+        if (objeto instanceof Categoria) {
             this.categorias[this.tamanhoAtual] = (Categoria) objeto;
             this.tamanhoAtual++;
         }
@@ -45,7 +45,6 @@ public class VetorCategoria implements IVetor{
             }
         }
         return false;
-        
     }
 
     public boolean contem(Object objeto) {
@@ -107,9 +106,9 @@ public class VetorCategoria implements IVetor{
     public String imprimeVetor() {
         String imprime = null;
 
-        if(!categorias[0].equals(null)) {
-            for (Categoria categoria : categorias) {
-                imprime += categoria.toString();
+        if(categorias[0] != null) {
+            for (int i = 0; i < this.categorias.length; i++) {
+                imprime += categorias[i].toString();
             }
         }
         return imprime;

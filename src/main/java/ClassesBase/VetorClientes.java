@@ -103,9 +103,9 @@ public class VetorClientes implements IVetor{
     public String imprimeVetor() {
         String imprime = null;
 
-        if(!clientes[0].equals(null)) {
-            for (Cliente cliente : clientes) {
-            imprime += cliente.toString();
+        if(clientes[0] != null) {
+            for (int i = 0; i < this.clientes.length; i++) {
+            imprime += clientes[i].toString();
             }
         }
         return imprime;

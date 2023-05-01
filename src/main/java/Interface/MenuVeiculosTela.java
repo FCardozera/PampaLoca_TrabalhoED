@@ -177,8 +177,8 @@ public class MenuVeiculosTela implements Initializable {
 
         
 
-        Veiculo veiculo = new Veiculo(placa, modelo, ano, potencia, lugares, marca, categoria);
-        if (!(placa.equals(null) && ano == 0 && modelo.equals(null) && categoria.equals(null) && marca.equals(null) && potencia == 0 && lugares == 0)) {
+        Veiculo veiculo = new Veiculo(placa, modelo, marca, ano, potencia, lugares, categoria);
+        if (placa != null && ano == 0 && modelo != null && categoria != null && marca != null && potencia == 0 && lugares == 0) {
             vetorVeiculos.adiciona(veiculo);
         }
 

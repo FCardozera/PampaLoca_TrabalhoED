@@ -22,7 +22,7 @@
                </font>
             </Text>
             <Button fx:id="voltarMenu" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#voltarMenu" prefHeight="25.0" prefWidth="36.0" text="&lt;-" />
-            <Button fx:id="dadosCategorias" layoutX="489.0" layoutY="14.0" mnemonicParsing="false" onAction="#menuDadosClientes" prefHeight="25.0" prefWidth="133.0" text="Clientes Cadastrados" />
+            <Button fx:id="dadosCategorias" layoutX="489.0" layoutY="14.0" mnemonicParsing="false" onAction="#menuDadosCategorias" prefHeight="25.0" prefWidth="133.0" text="Categorias Existentes" />
          </children>
       </Pane>
       <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="334.0" prefWidth="636.0" style="-fx-background-color: #e3e3e5;" VBox.vgrow="ALWAYS">
@@ -37,13 +37,13 @@
                         <ColorAdjust saturation="-1.0" />
                      </effect>
                   </ImageView>
-                  <Button fx:id="cadastrarCliente" layoutX="25.0" layoutY="298.0" mnemonicParsing="false" onAction="#cadastrarCliente" prefHeight="25.0" prefWidth="170.0" text="Cadastrar Categoria" />
-                  <Button fx:id="removerCliente" layoutX="240.0" layoutY="298.0" mnemonicParsing="false" onAction="#removerCliente" prefHeight="25.0" prefWidth="170.0" text="Remover Categoria" />
-                  <Button fx:id="verificarCliente" layoutX="452.0" layoutY="298.0" mnemonicParsing="false" onAction="#verificarCliente" prefHeight="25.0" prefWidth="170.0" text="Listar Categorias" />
-                  <Label layoutX="52.0" layoutY="95.0" prefHeight="17.0" prefWidth="81.0" text="Indentificador" />
-                  <TextField fx:id="identificadorCategoria" layoutX="155.0" layoutY="91.0" />
-                  <Label layoutX="50.0" layoutY="55.0" prefHeight="17.0" prefWidth="94.0" text="Categoria" />
-                  <TextField fx:id="nomeCategoria" layoutX="155.0" layoutY="51.0" prefHeight="25.0" prefWidth="255.0" />
+                  <Button fx:id="cadastrarCategoria" layoutX="25.0" layoutY="298.0" mnemonicParsing="false" onAction="#cadastrarCategoria" prefHeight="25.0" prefWidth="170.0" text="Cadastrar Categoria" />
+                  <Button fx:id="removerCategoria" layoutX="240.0" layoutY="298.0" mnemonicParsing="false" onAction="#removerCategoria" prefHeight="25.0" prefWidth="170.0" text="Remover Categoria" />
+                  <Button fx:id="verificarCategoria" layoutX="452.0" layoutY="298.0" mnemonicParsing="false" onAction="#verificarCategoria" prefHeight="25.0" prefWidth="170.0" text="Checar Categoria" />
+                  <Label layoutX="129.0" layoutY="150.0" prefHeight="17.0" prefWidth="81.0" text="Indentificador" />
+                  <TextField fx:id="identificadorCategoria" layoutX="254.0" layoutY="146.0" prefHeight="25.0" prefWidth="255.0" />
+                  <Label layoutX="127.0" layoutY="110.0" prefHeight="17.0" prefWidth="107.0" text="Nome da Categoria" />
+                  <TextField fx:id="nomeCategoria" layoutX="254.0" layoutY="106.0" prefHeight="25.0" prefWidth="255.0" />
                </children>
             </AnchorPane>
          </children>

@@ -128,7 +128,7 @@ public class MenuClientesTela implements Initializable{
 
         Cliente cliente = new Cliente(nome, cpf, nCarteira, telefone);
 
-        if(!(telefone.equals(null) || nome.equals(null) || cpf.equals(null) || nCarteira.equals(null))) {
+        if(telefone != null && nome != null && cpf != null && nCarteira != null) {
             vetorClientes.adiciona(cliente);
         }
 
