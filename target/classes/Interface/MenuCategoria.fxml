@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox fx:id="rootVBox2" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.MenuClientesTela">
+   <children>
+      <Pane prefHeight="55.0" prefWidth="636.0" style="-fx-background-color: #064532;">
+         <children>
+            <Text fill="WHITE" fontSmoothingType="LCD" layoutX="-39.0" layoutY="11.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="PampaLoca &amp; Cia LTDA" textAlignment="CENTER" textOrigin="TOP" wrappingWidth="640.0">
+               <font>
+                  <Font name="Trebuchet MS Bold" size="29.0" />
+               </font>
+            </Text>
+            <Button fx:id="voltarMenu" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#voltarMenu" prefHeight="25.0" prefWidth="36.0" text="&lt;-" />
+            <Button fx:id="dadosClientes" layoutX="489.0" layoutY="14.0" mnemonicParsing="false" onAction="#menuDadosClientes" prefHeight="25.0" prefWidth="133.0" text="Clientes Cadastrados" />
+         </children>
+      </Pane>
+      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="334.0" prefWidth="636.0" style="-fx-background-color: #e3e3e5;" VBox.vgrow="ALWAYS">
+         <children>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="341.0" prefWidth="636.0">
+               <children>
+                  <ImageView fx:id="imgFundo" fitHeight="280.0" fitWidth="392.0" layoutX="122.0" layoutY="61.0" opacity="0.34">
+                     <image>
+                        <Image url="@Design_sem_nome__2_-removebg-preview.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust saturation="-1.0" />
+                     </effect>
+                  </ImageView>
+                  <Button fx:id="cadastrarCliente" layoutX="25.0" layoutY="298.0" mnemonicParsing="false" onAction="#cadastrarCliente" prefHeight="25.0" prefWidth="170.0" text="Cadastrar Categoria" />
+                  <Button fx:id="removerCliente" layoutX="240.0" layoutY="298.0" mnemonicParsing="false" onAction="#removerCliente" prefHeight="25.0" prefWidth="170.0" text="Remover Categoria" />
+                  <Button fx:id="verificarCliente" layoutX="452.0" layoutY="298.0" mnemonicParsing="false" onAction="#verificarCliente" prefHeight="25.0" prefWidth="170.0" text="Listar Categorias" />
+                  <Label layoutX="52.0" layoutY="95.0" prefHeight="17.0" prefWidth="81.0" text="Indentificados" />
+                  <TextField fx:id="CPFCliente" layoutX="155.0" layoutY="91.0" />
+                  <Label layoutX="50.0" layoutY="55.0" prefHeight="17.0" prefWidth="94.0" text="Categoria" />
+                  <TextField fx:id="nomeCliente" layoutX="155.0" layoutY="51.0" prefHeight="25.0" prefWidth="255.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

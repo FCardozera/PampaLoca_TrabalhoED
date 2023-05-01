@@ -4,10 +4,10 @@ import java.net.URL;
 import java.util.InputMismatchException;
 import java.util.ResourceBundle;
 import ClassesBase.BibMetodos;
-import ClassesBase.Caminhao;
+
 import ClassesBase.Carro;
-import ClassesBase.ListVeiculos;
-import ClassesBase.Onibus;
+
+
 import ClassesBase.Veiculo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

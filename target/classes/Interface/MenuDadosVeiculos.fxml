@@ -2,8 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -20,9 +18,9 @@
    <children>
       <Pane prefHeight="55.0" prefWidth="636.0" style="-fx-background-color: #064532;">
          <children>
-            <Text fill="WHITE" fontSmoothingType="LCD" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="FAST Veículos" textAlignment="CENTER" textOrigin="TOP" wrappingWidth="640.0">
+            <Text fill="WHITE" fontSmoothingType="LCD" layoutX="-6.0" layoutY="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="PampaLoca &amp; Cia LTDA" textAlignment="CENTER" textOrigin="TOP" wrappingWidth="640.0">
                <font>
-                  <Font name="Trebuchet MS Bold" size="45.0" />
+                  <Font name="Trebuchet MS Bold" size="29.0" />
                </font>
             </Text>
             <Button fx:id="voltarMenuVeiculos" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#voltarMenuVeiculos" prefHeight="25.0" prefWidth="36.0" text="&lt;-" />
@@ -32,7 +30,7 @@
          <children>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="341.0" prefWidth="636.0">
                <children>
-                  <Text layoutX="123.0" layoutY="85.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="MENU DE VEÍCULOS" textAlignment="CENTER" wrappingWidth="392.0">
+                  <Text layoutX="127.0" layoutY="54.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="MENU DE VEÍCULOS" textAlignment="CENTER" wrappingWidth="392.0">
                      <font>
                         <Font name="Trebuchet MS Bold" size="39.0" />
                      </font>
@@ -64,17 +62,9 @@
                         <TableColumn fx:id="columnCargaPesquisar" prefWidth="91.0" style="-fx-alignment: CENTER;" text="Carga Máxima " />
                      </columns>
                   </TableView>
-                  <Label fx:id="labelTipoVeiculo" layoutX="26.0" layoutY="14.0" text="Selecione o Tipo de Veículo:" />
-                  <MenuButton fx:id="tipoVeiculo" layoutX="183.0" layoutY="10.0" mnemonicParsing="false" text="Selecione...">
-                    <items>
-                      <MenuItem fx:id="carro" mnemonicParsing="false" onAction="#itemCarro" text="Carro" />
-                      <MenuItem fx:id="onibus" mnemonicParsing="false" onAction="#itemOnibus" text="Ônibus" />
-                        <MenuItem fx:id="caminhao" mnemonicParsing="false" onAction="#itemCaminhao" text="Caminhão" />
-                    </items>
-                  </MenuButton>
-                  <Label fx:id="labelPlacaPesquisar" layoutX="232.0" layoutY="159.0" text="Placa do Veículo" />
-                  <TextField fx:id="textFieldBuscarVeiculo" layoutX="232.0" layoutY="176.0" prefHeight="25.0" prefWidth="159.0" promptText="Insira a Placa do Veículo" />
-                  <Button fx:id="btnBuscarVeiculo" layoutX="286.0" layoutY="205.0" mnemonicParsing="false" onAction="#btnBuscarVeiculo" text="Buscar" />
+                  <Label fx:id="labelPlacaPesquisar" layoutX="230.0" layoutY="93.0" text="Placa do Veículo" />
+                  <TextField fx:id="textFieldBuscarVeiculo" layoutX="230.0" layoutY="110.0" prefHeight="25.0" prefWidth="159.0" promptText="Insira a Placa do Veículo" />
+                  <Button fx:id="btnBuscarVeiculo" layoutX="284.0" layoutY="139.0" mnemonicParsing="false" onAction="#btnBuscarVeiculo" text="Buscar" />
                   <TableView fx:id="tableViewInfoVeiculo" layoutX="21.0" layoutY="39.0" prefHeight="249.0" prefWidth="602.0" visible="false">
                      <columns>
                         <TableColumn fx:id="columnTipoVeiculoInfo" prefWidth="75.0" style="-fx-alignment: CENTER;" text="Tipo Veículo" />

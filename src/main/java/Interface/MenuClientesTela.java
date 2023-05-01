@@ -26,10 +26,6 @@ public class MenuClientesTela implements Initializable{
     @FXML
     private TextField TelefoneCliente;
 
-    @FXML
-    private ChoiceBox<String> estado;
-
-    private String[] estados = {"AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RR", "RO", "RJ", "RN", "RS", "SC", "SP", "SE", "TO"};
 
     @FXML
     private TextField nomeCliente;
@@ -91,18 +87,18 @@ public class MenuClientesTela implements Initializable{
      */
     @FXML
     void cadastrarCliente(ActionEvent event) {
-        Endereco endereco = null;
-        String cep = null;
+        
+        
         String nCarteira = null;
+        
         String cpf = null;
-        String cidadeAux = null;
-        String complementoAux = null;
+         
         String nome = null;
-        String ruaAvenida = null;
+        
         String telefone = null;
-        String bairro = null;
-        String Estado = null;
-        int numero = 0;
+        
+        
+        
 
         try {
             cpf = BibMetodos.lerCPF(CPFCliente.getText());
@@ -117,15 +113,7 @@ public class MenuClientesTela implements Initializable{
             alert.showAndWait();
         }
 
-        try {
-            cep = BibMetodos.lerCEP(CEP.getText());
-        } catch (InputMismatchException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro!");
-            alert.setHeaderText(null);
-            alert.setContentText("CEP inválido!");
-            alert.showAndWait();
-        }
+        
 
         try {
             nCarteira = BibMetodos.lerNCarteira(CNHCliente.getText());
@@ -137,16 +125,7 @@ public class MenuClientesTela implements Initializable{
             alert.showAndWait();
         }
 
-        try {
-            cidadeAux = BibMetodos.lerNome(cidade.getText());
-        } catch (InputMismatchException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro!");
-            alert.setHeaderText(null);
-            alert.setContentText("Nome de cidade inválida (APENAS LETRAS)!");
-            alert.showAndWait();
-        }
-
+        
         try {
             nome = BibMetodos.lerNome(nomeCliente.getText());
         } catch (InputMismatchException e) {
@@ -157,15 +136,7 @@ public class MenuClientesTela implements Initializable{
             alert.showAndWait();
         }
 
-        try {
-            ruaAvenida = BibMetodos.lerNome(RuaAvenida.getText());
-        } catch (InputMismatchException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro!");
-            alert.setHeaderText(null);
-            alert.setContentText("Rua/Avenida inválida (APENAS LETRAS)!");
-            alert.showAndWait();
-        }
+        
 
         try {
             telefone = BibMetodos.lerTelefone(TelefoneCliente.getText());
@@ -177,50 +148,10 @@ public class MenuClientesTela implements Initializable{
             alert.showAndWait();
         }
 
-        try {
-            bairro = BibMetodos.lerNome(Bairro.getText());
-        } catch (InputMismatchException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro!");
-            alert.setHeaderText(null);
-            alert.setContentText("Bairro inválido (APENAS LETRAS)!");
-            alert.showAndWait();
-        }
 
-        try {
-            numero = BibMetodos.lerInteiro(Numero.getText());
-        } catch (NumberFormatException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro!");
-            alert.setHeaderText(null);
-            alert.setContentText("Número do endereço inválido (APENAS NÚMEROS)!");
-            alert.showAndWait();
-        }
+        Cliente cliente = new Cliente(nome, cpf, nCarteira, telefone);
 
-        complementoAux = complemento.getText();
-        Estado = estado.getValue();
-
-        try {
-            if(Estado.equals("Selecione...")) {
-                throw new NullPointerException();
-            }
-        } catch (NullPointerException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro!");
-            alert.setHeaderText(null);
-            alert.setContentText("Selecione o estado!");
-            alert.showAndWait();
-        }
-
-        if(complementoAux == null) {
-            endereco = new Endereco(Estado, cidadeAux, bairro, ruaAvenida, numero, cep);
-        } else {
-            endereco = new Endereco(Estado, cidadeAux, bairro, ruaAvenida, numero, complementoAux, cep);
-        }
-
-        Cliente cliente = new Cliente(nome, cpf, nCarteira, endereco, telefone);
-
-        if(!(numero == 0 || Estado.equals("Selecione...") || bairro.equals(null) || telefone.equals(null) || ruaAvenida.equals(null) || nome.equals(null) || cidadeAux.equals(null) || cpf.equals(null) || nCarteira.equals(null) || cep.equals(null))) {
+        if(!(telefone.equals(null) || nome.equals(null) || cpf.equals(null) || nCarteira.equals(null) || cep.equals(null))) {
             listaClientes.add(cliente);
         }
 
@@ -318,17 +249,13 @@ public class MenuClientesTela implements Initializable{
      */
     @FXML
     void limparCampos(ActionEvent event) {
-            Bairro.clear();
-            CEP.clear();
+           
+           
             CNHCliente.clear();
             CPFCliente.clear();
-            Numero.clear();
-            RuaAvenida.clear();
             TelefoneCliente.clear();
-            cidade.clear();
-            complemento.clear();
-            estado.setValue("Selecione...");
-            nomeCliente.clear();
+           nomeCliente.clear();
+
     }
 
     

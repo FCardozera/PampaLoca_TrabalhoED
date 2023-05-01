@@ -48,14 +48,14 @@
   <children>
       <BorderPane prefHeight="51.0" prefWidth="641.0" style="-fx-background-color: #064532;">
          <top>
-            <Text fill="WHITE" fontSmoothingType="LCD" stroke="BLACK" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-blend-mode: #E804C3;" text="FAST Veículos" textAlignment="CENTER" wrappingWidth="645.66015625" BorderPane.alignment="CENTER">
+            <Text fill="WHITE" fontSmoothingType="LCD" stroke="BLACK" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-blend-mode: #E804C3;" text="PampaLoca &amp; Cia LTDA" textAlignment="CENTER" wrappingWidth="642.66015625" BorderPane.alignment="CENTER">
                <font>
-                  <Font name="Trebuchet MS Bold" size="45.0" />
+                  <Font name="Trebuchet MS Bold" size="29.0" />
                </font>
             </Text>
          </top>
       </BorderPane>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="398.0" prefWidth="640.0" style="-fx-background-color: #e3e3e5;" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="365.0" prefWidth="643.0" style="-fx-background-color: #e3e3e5;" VBox.vgrow="ALWAYS">
       <children>
             <ImageView fitHeight="400.0" fitWidth="542.0" layoutX="53.0" layoutY="-68.0">
                <image>
