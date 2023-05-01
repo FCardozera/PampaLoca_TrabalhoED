@@ -18,9 +18,9 @@
    <children>
       <Pane prefHeight="55.0" prefWidth="636.0" style="-fx-background-color: #064532;">
          <children>
-            <Text fill="WHITE" fontSmoothingType="LCD" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="FAST Veículos" textAlignment="CENTER" textOrigin="TOP" wrappingWidth="640.0">
+            <Text fill="WHITE" fontSmoothingType="LCD" layoutX="-14.0" layoutY="11.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="PampaLoca &amp; Cia LTDA" textAlignment="CENTER" textOrigin="TOP" wrappingWidth="640.0">
                <font>
-                  <Font name="Trebuchet MS Bold" size="45.0" />
+                  <Font name="Trebuchet MS Bold" size="29.0" />
                </font>
             </Text>
             <Button fx:id="voltarMenuClientes" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#voltarMenuClientes" prefHeight="25.0" prefWidth="36.0" text="&lt;-" />

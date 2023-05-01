@@ -1,39 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--
-  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
-  All rights reserved. Use is subject to license terms.
-
-  This file is available and licensed under the following license:
-
-  Redistribution and use in source and binary forms, with or without
-  modification, are permitted provided that the following conditions
-  are met:
-
-  - Redistributions of source code must retain the above copyright
-    notice, this list of conditions and the following disclaimer.
-  - Redistributions in binary form must reproduce the above copyright
-    notice, this list of conditions and the following disclaimer in
-    the documentation and/or other materials provided with the distribution.
-  - Neither the name of Oracle Corporation nor the names of its
-    contributors may be used to endorse or promote products derived
-    from this software without specific prior written permission.
-
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
-
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
@@ -45,22 +12,22 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox fx:id="rootVBox2" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.MenuCategoriaTela">
-  <children>
+<VBox fx:id="rootVBox2" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.MenuClientesTela">
+   <children>
       <Pane prefHeight="55.0" prefWidth="636.0" style="-fx-background-color: #064532;">
          <children>
-            <Text fill="WHITE" fontSmoothingType="LCD" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="FAST Veículos" textAlignment="CENTER" textOrigin="TOP" wrappingWidth="640.0">
+            <Text fill="WHITE" fontSmoothingType="LCD" layoutX="-39.0" layoutY="11.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="PampaLoca &amp; Cia LTDA" textAlignment="CENTER" textOrigin="TOP" wrappingWidth="640.0">
                <font>
-                  <Font name="Trebuchet MS Bold" size="45.0" />
+                  <Font name="Trebuchet MS Bold" size="29.0" />
                </font>
             </Text>
             <Button fx:id="voltarMenu" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#voltarMenu" prefHeight="25.0" prefWidth="36.0" text="&lt;-" />
-            <Button fx:id="dadosCategorias" layoutX="489.0" layoutY="14.0" mnemonicParsing="false" onAction="#menuDadosCategorias" prefHeight="25.0" prefWidth="133.0" text="Categorias Existentes" />
+            <Button fx:id="dadosClientes" layoutX="489.0" layoutY="14.0" mnemonicParsing="false" onAction="#menuDadosClientes" prefHeight="25.0" prefWidth="133.0" text="Clientes Cadastrados" />
          </children>
       </Pane>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="334.0" prefWidth="636.0" style="-fx-background-color: #e3e3e5;" VBox.vgrow="ALWAYS">
-      <children>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="341.0" prefWidth="636.0">
+      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="334.0" prefWidth="636.0" style="-fx-background-color: #e3e3e5;" VBox.vgrow="ALWAYS">
+         <children>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="341.0" prefWidth="636.0">
                <children>
                   <ImageView fx:id="imgFundo" fitHeight="280.0" fitWidth="392.0" layoutX="122.0" layoutY="61.0" opacity="0.34">
                      <image>
@@ -70,34 +37,16 @@
                         <ColorAdjust saturation="-1.0" />
                      </effect>
                   </ImageView>
-                  <Button fx:id="cadastrarCliente" layoutX="25.0" layoutY="298.0" mnemonicParsing="false" onAction="#cadastrarCliente" prefHeight="25.0" prefWidth="170.0" text="Cadastrar Novo Cliente" />
-                  <Button fx:id="removerCliente" layoutX="240.0" layoutY="298.0" mnemonicParsing="false" onAction="#removerCliente" prefHeight="25.0" prefWidth="170.0" text="Remover Cliente " />
-                  <Button fx:id="verificarCliente" layoutX="452.0" layoutY="298.0" mnemonicParsing="false" onAction="#verificarCliente" prefHeight="25.0" prefWidth="170.0" text="Verificar Cliente" />
-                  <Label layoutX="14.0" layoutY="54.0" text="CPF" />
-                  <TextField fx:id="CPFCliente" layoutX="68.0" layoutY="50.0" />
-                  <Label layoutX="12.0" layoutY="14.0" prefHeight="17.0" prefWidth="37.0" text="Nome " />
-                  <TextField fx:id="nomeCliente" layoutX="68.0" layoutY="10.0" />
-                  <TextField fx:id="CNHCliente" layoutX="68.0" layoutY="93.0" />
-                  <Label layoutX="12.0" layoutY="97.0" text="CNH" />
-                  <Label layoutX="13.0" layoutY="220.0" text="Estado" />
-                  <TextField fx:id="Bairro" layoutX="403.0" layoutY="50.0" />
-                  <TextField fx:id="RuaAvenida" layoutX="403.0" layoutY="94.0" />
-                  <Label layoutX="328.0" layoutY="97.0" text="Logradouro" />
-                  <Label layoutX="14.0" layoutY="178.0" text="CEP" />
-                  <Label layoutX="340.0" layoutY="14.0" text="Cidade" />
-                  <Label layoutX="321.0" layoutY="178.0" text="Complemento" />
-                  <TextField fx:id="cidade" layoutX="404.0" layoutY="10.0" />
-                  <TextField fx:id="complemento" layoutX="403.0" layoutY="174.0" />
-                  <Label layoutX="12.0" layoutY="139.0" text="Telefone" />
-                  <TextField fx:id="TelefoneCliente" layoutX="68.0" layoutY="135.0" />
-                  <TextField fx:id="CEP" layoutX="68.0" layoutY="174.0" />
-                  <Label layoutX="343.0" layoutY="54.0" text="Bairro" />
-                  <Label layoutX="337.0" layoutY="139.0" text="Número" />
-                  <TextField fx:id="Numero" layoutX="403.0" layoutY="135.0" />
-                  <ChoiceBox fx:id="estado" layoutX="68.0" layoutY="216.0" prefWidth="150.0" />
+                  <Button fx:id="cadastrarCliente" layoutX="25.0" layoutY="298.0" mnemonicParsing="false" onAction="#cadastrarCliente" prefHeight="25.0" prefWidth="170.0" text="Cadastrar Categoria" />
+                  <Button fx:id="removerCliente" layoutX="240.0" layoutY="298.0" mnemonicParsing="false" onAction="#removerCliente" prefHeight="25.0" prefWidth="170.0" text="Remover Categoria" />
+                  <Button fx:id="verificarCliente" layoutX="452.0" layoutY="298.0" mnemonicParsing="false" onAction="#verificarCliente" prefHeight="25.0" prefWidth="170.0" text="Listar Categorias" />
+                  <Label layoutX="52.0" layoutY="95.0" prefHeight="17.0" prefWidth="81.0" text="Indentificados" />
+                  <TextField fx:id="CPFCliente" layoutX="155.0" layoutY="91.0" />
+                  <Label layoutX="50.0" layoutY="55.0" prefHeight="17.0" prefWidth="94.0" text="Categoria" />
+                  <TextField fx:id="nomeCliente" layoutX="155.0" layoutY="51.0" prefHeight="25.0" prefWidth="255.0" />
                </children>
             </AnchorPane>
-      </children>
-    </AnchorPane>
-  </children>
+         </children>
+      </AnchorPane>
+   </children>
 </VBox>

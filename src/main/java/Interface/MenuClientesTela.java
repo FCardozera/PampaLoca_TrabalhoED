@@ -78,6 +78,7 @@ public class MenuClientesTela implements Initializable{
     @FXML
     void cadastrarCliente(ActionEvent event) {
         String nCarteira = null;
+        
         String cpf = null;
         String nome = null;
         String telefone = null;
