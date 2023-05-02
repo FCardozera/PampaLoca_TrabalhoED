@@ -41,6 +41,7 @@ public class MenuCategoriaTela implements Initializable{
     private VBox rootVBox2;
 
     private VetorCategoria vetorCategoria;
+    private VetorVeiculos vetorVeiculos;
 
     
     /** 
@@ -53,6 +54,7 @@ public class MenuCategoriaTela implements Initializable{
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         vetorCategoria = LocadoraVeiculos.getVetorCategoria();
+        vetorVeiculos = LocadoraVeiculos.getVetorVeiculos();
         limparCampos(null);
     }
 
@@ -130,21 +132,23 @@ public class MenuCategoriaTela implements Initializable{
         
         try {
             identificador = Utility.lerInteiro(identificadorCategoria.getText());
-            if (vetorCategoria.removeId(identificador)) {
-                limparCampos(null);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Operação concluída!");
-                alert.setHeaderText(null);
-                alert.setContentText("Categoria removida com sucesso!");
-                alert.showAndWait();
+            if (!(vetorVeiculos.contemCategoria(identificador))) {
+                if (vetorCategoria.removeId(identificador)) {
+                    limparCampos(null);
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Operação concluída!");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Categoria removida com sucesso!");
+                    alert.showAndWait();
+                }
             } else {
-                throw new NullPointerException();
+                throw new InputMismatchException();
             }
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro!");
             alert.setHeaderText(null);
-            alert.setContentText("Identificador inválido ou não existente no sistema!");
+            alert.setContentText("Identificador inválido, não existente no sistema ou possui veículo atrelado!");
             alert.showAndWait();
         }
     }
@@ -238,5 +242,4 @@ public class MenuCategoriaTela implements Initializable{
             System.out.println(e);
         }
     }
-
 }

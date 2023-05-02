@@ -54,6 +54,32 @@ public class ListaLocacoes implements ILista {
         return p.getLocacaoInfo();
     }
 
+    public boolean contemCPF(String cpf) {
+        Noh p;
+
+        p = inicio;
+        while (p != null && p.getLocacaoInfo().getCliente().getCpf() != cpf) {
+            p = p.getProximo();
+        }
+        if (p == null) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean contemPlaca(String placa) {
+        Noh p;
+
+        p = inicio;
+        while (p != null && p.getLocacaoInfo().getVeiculo().getPlaca() != placa) {
+            p = p.getProximo();
+        }
+        if (p == null) {
+            return false;
+        }
+        return true;
+    }
+
     public boolean contemCodigo(int codigo) {
         Noh p;
 
@@ -63,6 +89,26 @@ public class ListaLocacoes implements ILista {
         }
         if (p == null) {
             return false;
+        }
+        return true;
+    }
+
+    public boolean removePlaca(String placa) {
+        Noh ant, p;
+
+        ant = null;
+        p = inicio;
+        while (p != null && p.getLocacaoInfo().getVeiculo().getPlaca() != placa) {
+            ant = p;
+            p = p.getProximo();
+        }
+        if (p == null) {
+            return false;
+        }
+        if (ant == null) {
+            inicio = p.getProximo();
+        } else {
+            ant.setProximo(p.getProximo());
         }
         return true;
     }

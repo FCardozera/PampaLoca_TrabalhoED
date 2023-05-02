@@ -4,24 +4,26 @@ import java.net.URL;
 import java.util.Calendar;
 import java.util.InputMismatchException;
 import java.util.ResourceBundle;
-
 import ClassesBase.*;
 import Bib.*;
-import ClassesBase.Cliente;
-import ClassesBase.Locacao;
-import ClassesBase.Veiculo;
-import ClassesBase.VetorClientes;
-import ClassesBase.ListaLocacoes;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 
 public class MenuLocacoesTela implements Initializable {
 
@@ -30,6 +32,33 @@ public class MenuLocacoesTela implements Initializable {
 
     @FXML
     private TextField placaVeiculo;
+
+    @FXML
+    private TextField previaTotal;
+
+    @FXML
+    private TableView<Veiculo> tabelaVeiculos;
+
+    @FXML
+    private TableColumn<Veiculo, Integer> colunaAno;
+
+    @FXML
+    private TableColumn<Veiculo, String> colunaCategoria;
+
+    @FXML
+    private TableColumn<Veiculo, Integer> colunaLugares;
+
+    @FXML
+    private TableColumn<Veiculo, String> colunaMarca;
+
+    @FXML
+    private TableColumn<Veiculo, String> colunaModelo;
+
+    @FXML
+    private TableColumn<Veiculo, String> colunaPlaca;
+
+    @FXML
+    private TableColumn<Veiculo, Integer> colunaPotencia;
 
     @FXML
     private ChoiceBox<String> diaInicio;
@@ -57,19 +86,13 @@ public class MenuLocacoesTela implements Initializable {
     private String[] opcaoAno = { "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030" };
 
     @FXML
-    private TextField codigoLocacao;
-
-    @FXML
-    private Label codigoLocacaoLabel;
-
-    @FXML
     private Button removerLocacao;
 
     @FXML
-    private Button verificarLocacao;
+    private Button dadosLocacoes;
 
     @FXML
-    private Button dadosLocacoes;
+    private Button calcularPreco;
 
     @FXML
     private Button voltarMenu;
@@ -100,8 +123,6 @@ public class MenuLocacoesTela implements Initializable {
         vetorVeiculos = LocadoraVeiculos.getVetorVeiculos();
         listaLocacoes = LocadoraVeiculos.getListaLocacoes();
         vetorClientes = LocadoraVeiculos.getVetorClientes();
-        codigoLocacaoLabel.setVisible(false);
-        codigoLocacao.setVisible(false);
         diaInicio.getItems().addAll(opcaoDia);
         diaFinal.getItems().addAll(opcaoDia);
         mesInicio.getItems().addAll(opcaoMes);
@@ -109,6 +130,18 @@ public class MenuLocacoesTela implements Initializable {
         anoInicio.getItems().addAll(opcaoAno);
         anoFinal.getItems().addAll(opcaoAno);
         limparCampos(null);
+        colunaAno.setCellValueFactory(new PropertyValueFactory<Veiculo, Integer>("ano"));
+        colunaLugares.setCellValueFactory(new PropertyValueFactory<Veiculo, Integer>("lugares"));
+        colunaPotencia.setCellValueFactory(new PropertyValueFactory<Veiculo, Integer>("potencia"));
+        colunaCategoria.setCellValueFactory(new Callback<CellDataFeatures<Veiculo, String>, ObservableValue<String>>() {    
+            @Override
+            public ObservableValue<String> call(CellDataFeatures<Veiculo, String> c) {
+                return new SimpleObjectProperty<String>(c.getValue().getCategoria().getNome());
+            }
+        });
+        colunaPlaca.setCellValueFactory(new PropertyValueFactory<Veiculo, String>("placa"));
+        colunaModelo.setCellValueFactory(new PropertyValueFactory<Veiculo, String>("modelo"));
+        colunaMarca.setCellValueFactory(new PropertyValueFactory<Veiculo, String>("marca"));
     }
 
 
@@ -139,27 +172,27 @@ public class MenuLocacoesTela implements Initializable {
 
         try {
             cpf = Utility.lerCPF(cpfCliente.getText());
-            if (!vetorClientes.contemCPF(cpf)) {
+            if (!vetorClientes.contemCPF(cpf) || listaLocacoes.contemCPF(cpf)) {
                 throw new InputMismatchException();
             }
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro!");
             alert.setHeaderText(null);
-            alert.setContentText("CPF de cliente inválido ou não cadastrado no sistema!");
+            alert.setContentText("CPF de cliente inválido, não cadastrado no sistema ou já atrelado a uma locação!");
             alert.showAndWait();
         }
 
         try {
             placa = Utility.lerPlaca(placaVeiculo.getText());
-            if (!vetorVeiculos.contemPlaca(placa)) {
+            if (!vetorVeiculos.contemPlaca(placa) || listaLocacoes.contemPlaca(placa)) {
                 throw new InputMismatchException();
             }
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro!");
             alert.setHeaderText(null);
-            alert.setContentText("Placa de veículo inválida ou não cadastrada no sistema!");
+            alert.setContentText("Placa de veículo inválida, não cadastrada no sistema ou veículo indisponível!");
             alert.showAndWait();
         }
 
@@ -212,79 +245,26 @@ public class MenuLocacoesTela implements Initializable {
      */
     @FXML
     void removerLocacao(ActionEvent event) {
-        int codigo = 0;
+        String placa = null;
 
-        if (codigoLocacao.isVisible()) {
-            try {
-                codigo = Utility.lerInteiro(codigoLocacao.getText());
-                if (listaLocacoes.remove(codigo)) {
-                    limparCampos(null);
-                    codigoLocacao.setVisible(false);
-                    codigoLocacaoLabel.setVisible(false);
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Operação concluída!");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Locação removida com sucesso!");
-                    alert.showAndWait();
-                } else {
-                    throw new NullPointerException();
-                }
-            } catch (Exception e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Erro!");
+        try {
+            placa = Utility.lerPlaca(placaVeiculo.getText());
+            if (listaLocacoes.removePlaca(placa)) {
+                limparCampos(null);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Operação concluída!");
                 alert.setHeaderText(null);
-                alert.setContentText("Código inválido ou não existente no sistema!");
+                alert.setContentText("Locação removida com sucesso!");
                 alert.showAndWait();
+            } else {
+                throw new NullPointerException();
             }
-        } else {
-            codigoLocacao.setVisible(true);
-            codigoLocacaoLabel.setVisible(true);
-        }
-    }
-
-    /**
-     * Método que verifica se uma locação existe no sistema; Caso o código da
-     * locação não seja válido, uma mensagem de erro é exibida; Caso o código da
-     * locação seja válido e esteja cadastrado no sistema, uma mensagem de sucesso
-     * é exibida;
-     * @param event
-     */
-    @FXML
-    void verificarLocacao(ActionEvent event) {
-        int codigo = 0;
-
-        if (codigoLocacao.isVisible()) {
-            try {
-                codigo = Utility.lerInteiro(codigoLocacao.getText());
-                if (listaLocacoes.contemCodigo(codigo)) {
-                    limparCampos(null);
-                    codigoLocacao.setVisible(false);
-                    codigoLocacaoLabel.setVisible(false);
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Operação concluída!");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Locação " + codigo + " existe no sistema!");
-                    alert.showAndWait();
-                } else {
-                    limparCampos(null);
-                    codigoLocacao.setVisible(false);
-                    codigoLocacaoLabel.setVisible(false);
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Operação concluída!");
-                    alert.setHeaderText(null);
-                    alert.setContentText("A locação de código: " + codigo + ", não encontra-se cadastrada no sistema!");
-                    alert.showAndWait();
-                }
-            } catch (Exception e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Erro!");
-                alert.setHeaderText(null);
-                alert.setContentText("Código inválido!");
-                alert.showAndWait();
-            }
-        } else {
-            codigoLocacao.setVisible(true);
-            codigoLocacaoLabel.setVisible(true);
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro!");
+            alert.setHeaderText(null);
+            alert.setContentText("Placa inválida ou não atrelada a um veículo!");
+            alert.showAndWait();
         }
     }
 
@@ -294,15 +274,47 @@ public class MenuLocacoesTela implements Initializable {
      */
     @FXML
     void limparCampos(ActionEvent event) {
-        codigoLocacao.clear();
+        ObservableList<Veiculo> observableListVeiculos = FXCollections.observableArrayList();
+        Veiculo [] veiculos = new Veiculo[vetorVeiculos.tamanho()];
+        veiculos = vetorVeiculos.getVeiculos();
+
+        for (int i = 0; i < vetorVeiculos.tamanho(); i++) {
+            observableListVeiculos.add(veiculos[i]);
+        }
+        tabelaVeiculos.setItems(observableListVeiculos);
         cpfCliente.clear();
         placaVeiculo.clear();
+        previaTotal.clear();
         diaInicio.setValue("Dia");
         diaFinal.setValue("Dia");
         mesInicio.setValue("Mês");
         mesFinal.setValue("Mês");
         anoInicio.setValue("Ano");
         anoFinal.setValue("Ano");
+    }
+
+    @FXML
+    void calcularPreco(ActionEvent event) {
+        if (!(diaInicio.getValue().equals("Dia")) && !(diaFinal.getValue().equals("Dia")) &&
+        !(mesInicio.getValue().equals("Mês")) && !(mesFinal.getValue().equals("Mês")) &&
+        !(anoInicio.getValue().equals("Ano")) && !(anoFinal.getValue().equals("Ano"))) {
+
+            Calendar dataUm = Utility.lerData(Integer.parseInt(diaInicio.getValue()),
+            Integer.parseInt(mesInicio.getValue()), Integer.parseInt(anoInicio.getValue()));
+            Calendar dataDois = Utility.lerData(Integer.parseInt(diaFinal.getValue()), Integer.parseInt(mesFinal.getValue()),
+            Integer.parseInt(anoFinal.getValue()));
+
+            float valorTotal = (Utility.diferencaDias(dataUm, dataDois)) * 250;
+
+            String retorno = "" + valorTotal;
+            previaTotal.setText(retorno);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro!");
+            alert.setHeaderText(null);
+            alert.setContentText("Data inválida! Tente novamente!");
+            alert.showAndWait();
+        }
     }
 
     /**

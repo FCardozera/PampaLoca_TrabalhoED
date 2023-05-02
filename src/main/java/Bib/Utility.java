@@ -131,14 +131,15 @@ public class Utility {
         return nome;
     }
 
-    public static Categoria lerCategoria(String dados, VetorCategoria vetorCategoria) {
+    public static Categoria lerCategoria(String dados, VetorCategoria vetorCategoria) throws InputMismatchException {
         int categoriaID = 0;
         categoriaID = lerInteiro(dados);
 
         if (vetorCategoria.contemId(categoriaID)) {
             return vetorCategoria.getCategoriaID(categoriaID);
+        } else {
+            throw new InputMismatchException();
         }
-        return null;
     }
 
     /**
@@ -271,7 +272,7 @@ public class Utility {
             leitor.readLine();
             while ((linha = leitor.readLine()) != null) {
                 String[] valores = linha.split(";");
-                String placa = valores[0];
+                String placa = lerPlaca(valores[0]);
                 String modelo = valores[1];
                 String marca = valores[2];
                 int ano = Integer.parseInt(valores[3]);

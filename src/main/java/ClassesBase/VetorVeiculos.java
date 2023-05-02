@@ -37,6 +37,15 @@ public class VetorVeiculos implements IVetor{
         return null;
     }
 
+    public boolean contemCategoria(int identificador) {
+        for (int i = 0; i < this.tamanhoAtual; i++) {
+            if (veiculos[i].getCategoria().getIdentificador() == identificador) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean contemPlaca(String placa) {
         for (int i = 0; i < this.tamanhoAtual; i++) {
             if (veiculos[i].getPlaca().equals(placa)) {

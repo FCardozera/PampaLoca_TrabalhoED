@@ -57,41 +57,16 @@ public class MenuVeiculosTela implements Initializable {
 
     private VetorVeiculos vetorVeiculos;
     private VetorCategoria vetorCategoria;
+    private ListaLocacoes listaLocacoes;
 
-    /**
-     * Inicializa a lista de veículos da locadora de veículos.
-     * Esconde os componentes da interface gráfica "paneCarro", "paneCaminhao", e
-     * "paneOnibus".
-     * Limpa os campos da interface gráfica chamando o método limparCampos.
-     * Adiciona opções às listas de opções dos componentes "opcaoArCondCarro",
-     * "opcaoArCondOnibus", e "opcaoInternetOnibus".
-     * Adiciona categorias à lista de categorias do componente "categoriaOnibus".
-     * Esse código parece fazer parte de um sistema de gerenciamento de locações de
-     * veículos. Ele inicializa a interface gráfica e prepara os componentes para
-     * serem usados pelo usuário.
-     * 
-     * @param arg0
-     * @param arg1
-     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+        listaLocacoes = LocadoraVeiculos.getListaLocacoes();
         vetorCategoria = LocadoraVeiculos.getVetorCategoria();
         vetorVeiculos = LocadoraVeiculos.getVetorVeiculos();
         limparCampos(null);
     }
 
-    /**
-     * @param event
-     * Este método cadastra veículos pela placa dele, caso a placa já
-     * exista no sistema, é lançada uma exceção.
-     * Após a exceção ser lançada, é exibida uma mensagem avisando ao
-     * adm que a placa é inválida ou já esta cadastrada.
-     * Também, caso tente utilizar letras no ano ou valor da diária, o
-     * sistema exibe uma mensagem de erro.
-     * Esta mensagem avisa o adm que só podem ser utilizados números.
-     * Após isso, é especificado o tipo de veículo que o adm deseja
-     * cadastrar no sistema.
-     */
     @FXML
     void cadastrarVeiculo(ActionEvent event) {
         String placa = null;
@@ -117,7 +92,7 @@ public class MenuVeiculosTela implements Initializable {
 
         try {
             modelo = Utility.lerNome(modeloVeiculo.getText());
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro!");
             alert.setHeaderText(null);
@@ -127,7 +102,7 @@ public class MenuVeiculosTela implements Initializable {
 
         try {
             ano = Utility.lerInteiro(anoVeiculo.getText());
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro!");
             alert.setHeaderText(null);
@@ -137,7 +112,7 @@ public class MenuVeiculosTela implements Initializable {
 
         try {
             potencia = Utility.lerInteiro(potenciaVeiculo.getText());
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro!");
             alert.setHeaderText(null);
@@ -147,7 +122,7 @@ public class MenuVeiculosTela implements Initializable {
 
         try {
             lugares = Utility.lerInteiro(lugaresVeiculo.getText());
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro!");
             alert.setHeaderText(null);
@@ -157,7 +132,7 @@ public class MenuVeiculosTela implements Initializable {
 
         try {
             marca = Utility.lerNome(marcaVeiculo.getText());
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro!");
             alert.setHeaderText(null);
@@ -167,15 +142,13 @@ public class MenuVeiculosTela implements Initializable {
 
         try {
             categoria = Utility.lerCategoria(categoriaVeiculo.getText(), vetorCategoria);
-        } catch (NumberFormatException e) {
+        } catch (InputMismatchException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro!");
             alert.setHeaderText(null);
-            alert.setContentText("Modelo inválido!");
+            alert.setContentText("Categoria inválida!");
             alert.showAndWait();
         }
-
-        
 
         Veiculo veiculo = new Veiculo(placa, modelo, marca, ano, potencia, lugares, categoria);
         if (placa != null && ano == 0 && modelo != null && categoria != null && marca != null && potencia == 0 && lugares == 0) {
@@ -207,13 +180,15 @@ public class MenuVeiculosTela implements Initializable {
 
         try {
             placa = Utility.lerPlaca(placaVeiculo.getText());
-            if (vetorVeiculos.removePlaca(placa)) {
-                limparCampos(null);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Operação concluída!");
-                alert.setHeaderText(null);
-                alert.setContentText("Veículo removido com sucesso!");
-                alert.showAndWait();
+            if (!(listaLocacoes.contemPlaca(placa))) {
+                if (vetorVeiculos.removePlaca(placa)) {
+                    limparCampos(null);
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Operação concluída!");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Veículo removido com sucesso!");
+                    alert.showAndWait();
+                }
             } else {
                 throw new NullPointerException();
             }
@@ -221,7 +196,7 @@ public class MenuVeiculosTela implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro!");
             alert.setHeaderText(null);
-            alert.setContentText("Placa inválida ou não contemPlacante no sistema!");
+            alert.setContentText("Placa inválida, não existente no sistema ou atrelada à uma locação!");
             alert.showAndWait();
         }
     }
