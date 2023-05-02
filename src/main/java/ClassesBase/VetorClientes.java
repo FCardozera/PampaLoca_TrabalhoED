@@ -105,7 +105,7 @@ public class VetorClientes implements IVetor{
 
         if(clientes[0] != null) {
             for (int i = 0; i < this.clientes.length; i++) {
-            imprime += clientes[i].toString();
+                imprime += clientes[i].toString();
             }
         }
         return imprime;

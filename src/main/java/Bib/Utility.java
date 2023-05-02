@@ -76,7 +76,7 @@ public class Utility {
 
         cpf = formataDadosNumero(dados);
         if(cpf.length() == 11) {
-            return cpf;
+            return escreverCPF(cpf);
         } else {
             throw new InputMismatchException();
         }
@@ -108,7 +108,7 @@ public class Utility {
 
         telefone = formataDadosNumero(dados);
         if(telefone.length() == 11) {
-            return telefone;
+            return escreverTelefone(telefone);
         } else {
             throw new InputMismatchException();
         }
@@ -163,7 +163,7 @@ public class Utility {
         } else if(!placa.substring(5, 7).matches("[0-9]*")) {
             throw new InputMismatchException();
         }
-        return placa;
+        return escreverPlaca(placa);
     }
 
     /**

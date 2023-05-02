@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox fx:id="rootVBox2" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.MenuDadosClientes">
+<VBox fx:id="rootVBox2" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.MenuDadosCategoria">
    <children>
       <Pane prefHeight="55.0" prefWidth="636.0" style="-fx-background-color: #064532;">
          <children>
@@ -18,25 +18,23 @@
                   <Font name="Trebuchet MS Bold" size="29.0" />
                </font>
             </Text>
-            <Button fx:id="voltarMenuClientes" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#voltarMenuClientes" prefHeight="25.0" prefWidth="36.0" text="&lt;-" />
+            <Button fx:id="voltarMenuCategorias" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#voltarMenuCategorias" prefHeight="25.0" prefWidth="36.0" text="&lt;-" />
          </children>
       </Pane>
       <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="334.0" prefWidth="636.0" style="-fx-background-color: #e3e3e5;" VBox.vgrow="ALWAYS">
          <children>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="341.0" prefWidth="636.0">
                <children>
-                  <Text layoutX="1.0" layoutY="37.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="MENU DE CLIENTES" textAlignment="CENTER" wrappingWidth="640.0">
+                  <Text layoutX="1.0" layoutY="37.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="MENU DE CATEGORIAS" textAlignment="CENTER" wrappingWidth="640.0">
                      <font>
                         <Font name="Trebuchet MS Bold" size="39.0" />
                      </font>
                   </Text>
-                  <TableView fx:id="tableViewInfoCliente" layoutX="26.0" layoutY="42.0" prefHeight="284.0" prefWidth="591.0">
-                    <columns>
-                      <TableColumn fx:id="columnNomeInfo" prefWidth="188.0" style="-fx-alignment: CENTER;" text="Nome" />
-                      <TableColumn fx:id="columnCpfInfo" prefWidth="132.0" style="-fx-alignment: CENTER;" text="CPF" />
-                        <TableColumn fx:id="columnCnhInfo" prefWidth="122.0" style="-fx-alignment: CENTER;" text="CNH" />
-                        <TableColumn fx:id="columnTelefoneInfo" minWidth="0.0" prefWidth="148.0" style="-fx-alignment: CENTER;" text="Telefone" />
-                    </columns>
+                  <TableView fx:id="tableViewInfoCategorias" layoutX="26.0" layoutY="42.0" prefHeight="284.0" prefWidth="591.0">
+                     <columns>
+                        <TableColumn fx:id="columnIdentificadorInfo" prefWidth="289.5999813079834" style="-fx-alignment: CENTER;" text="Identificador" />
+                        <TableColumn fx:id="columnNomeCategoriaInfo" prefWidth="300.7999572753906" style="-fx-alignment: CENTER;" text="Nome" />
+                     </columns>
                   </TableView>
                </children>
             </AnchorPane>

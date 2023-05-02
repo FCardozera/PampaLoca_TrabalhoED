@@ -20,6 +20,10 @@ public class ListaLocacoes implements ILista {
         }
     }
 
+    public Noh getInicio() {
+        return inicio;
+    }
+
     public void insereFim(Object objeto) {
         Noh novo = new Noh(objeto);
 

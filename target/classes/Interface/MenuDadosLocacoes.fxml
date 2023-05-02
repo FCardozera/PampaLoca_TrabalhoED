@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.ColorAdjust?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -18,9 +13,9 @@
    <children>
       <Pane prefHeight="55.0" prefWidth="636.0" style="-fx-background-color: #064532;">
          <children>
-            <Text fill="WHITE" fontSmoothingType="LCD" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="FAST Veículos" textAlignment="CENTER" textOrigin="TOP" wrappingWidth="640.0">
+            <Text fill="WHITE" fontSmoothingType="LCD" layoutY="11.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="PampaLoca &amp; Cia LTDA" textAlignment="CENTER" textOrigin="TOP" wrappingWidth="640.0">
                <font>
-                  <Font name="Trebuchet MS Bold" size="45.0" />
+                  <Font name="Trebuchet MS Bold" size="29.0" />
                </font>
             </Text>
             <Button fx:id="voltarMenuLocacoes" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#voltarMenuLocacoes" prefHeight="25.0" prefWidth="36.0" text="&lt;-" />
@@ -30,50 +25,19 @@
          <children>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="341.0" prefWidth="636.0">
                <children>
-                  <Text layoutX="3.0" layoutY="67.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="MENU DE LOCAÇÕES" textAlignment="CENTER" wrappingWidth="640.0">
+                  <Text layoutX="-2.0" layoutY="37.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="MENU DE LOCAÇÕES" textAlignment="CENTER" wrappingWidth="640.0">
                      <font>
                         <Font name="Trebuchet MS Bold" size="39.0" />
                      </font>
                   </Text>
-                  <ImageView fx:id="imgFundo" fitHeight="280.0" fitWidth="392.0" layoutX="122.0" layoutY="61.0" opacity="0.34">
-                     <image>
-                        <Image url="@Design_sem_nome__2_-removebg-preview.png" />
-                     </image>
-                     <effect>
-                        <ColorAdjust saturation="-1.0" />
-                     </effect>
-                  </ImageView>
-                  <Button fx:id="btnInfoCompletasLocacao" layoutX="85.0" layoutY="298.0" mnemonicParsing="false" onAction="#btnInfoCompletasLocacao" prefHeight="25.0" prefWidth="170.0" text="Informações Completas" />
-                  <Button fx:id="btnPesquisarLocacao" layoutX="394.0" layoutY="298.0" mnemonicParsing="false" onAction="#btnPesquisarLocacao" prefHeight="25.0" prefWidth="170.0" text="Pesquisar Informações" />
-                  <TableView fx:id="tableViewPesquisarLocacoes" layoutX="26.0" layoutY="14.0" prefHeight="79.0" prefWidth="594.0" visible="false">
+                  <TableView fx:id="tableViewPesquisarLocacoes" layoutX="26.0" layoutY="46.0" prefHeight="275.0" prefWidth="584.0">
                      <columns>
                         <TableColumn fx:id="columnCodigoPesquisar" prefWidth="126.0" style="-fx-alignment: CENTER;" text="Código Locação" />
-                        <TableColumn fx:id="columnNomePesquisar" prefWidth="285.0" style="-fx-alignment: CENTER;" text="Nome Cliente" />
-                        <TableColumn fx:id="columnCpfPesquisar" prefWidth="120.0" style="-fx-alignment: CENTER;" text="CPF Cliente" />
-                        <TableColumn fx:id="columnTipoVeiculoPesquisar" prefWidth="119.0" style="-fx-alignment: CENTER;" text="Tipo Veículo" />
+                        <TableColumn fx:id="columnCpfPesquisar" prefWidth="120.0" style="-fx-alignment: CENTER;" text="CNH do Cliente" />
                         <TableColumn fx:id="columnPlacaPesquisar" prefWidth="101.0" style="-fx-alignment: CENTER;" text="Placa" />
-                        <TableColumn fx:id="columnAnoPesquisar" prefWidth="47.0" style="-fx-alignment: CENTER;" text="Ano" />
-                        <TableColumn fx:id="columnValorDiariaPesquisar" prefWidth="95.0" style="-fx-alignment: CENTER;" text="Valor Diária" />
-                        <TableColumn fx:id="columnSeguroPesquisar" prefWidth="64.0" style="-fx-alignment: CENTER;" text="Seguro" />
-                        <TableColumn fx:id="columnDataInicialPesquisar" prefWidth="118.0" style="-fx-alignment: CENTER;" text="Data Inicial" />
-                        <TableColumn fx:id="columnDataFinalPesquisar" prefWidth="97.0" style="-fx-alignment: CENTER;" text="Data Final" />
-                     </columns>
-                  </TableView>
-                  <Label fx:id="labelCodigoPesquisar" layoutX="226.0" layoutY="112.0" text="Código Locação" visible="false" />
-                  <TextField fx:id="textFieldBuscarLocacao" layoutX="226.0" layoutY="129.0" prefHeight="25.0" prefWidth="159.0" promptText="Insira o Código da Locação" visible="false" />
-                  <Button fx:id="btnBuscarLocacao" layoutX="280.0" layoutY="158.0" mnemonicParsing="false" onAction="#btnBuscarLocacao" text="Buscar" visible="false" />
-                  <TableView fx:id="tableViewInfoLocacoes" layoutX="26.0" layoutY="15.0" prefHeight="275.0" prefWidth="594.0" visible="false">
-                     <columns>
-                        <TableColumn fx:id="columnCodigoInfo" prefWidth="146.0" style="-fx-alignment: CENTER;" text="Código Locação" />
-                        <TableColumn fx:id="columnNomeInfo" prefWidth="245.0" style="-fx-alignment: CENTER;" text="Nome Cliente" />
-                        <TableColumn fx:id="columnCpfInfo" prefWidth="184.0" style="-fx-alignment: CENTER;" text="CPF Cliente" />
-                        <TableColumn fx:id="columnTipoVeiculoInfo" prefWidth="148.0" style="-fx-alignment: CENTER;" text="Tipo Veículo" />
-                        <TableColumn fx:id="columnPlacaInfo" prefWidth="129.0" style="-fx-alignment: CENTER;" text="Placa" />
-                        <TableColumn fx:id="columnAnoInfo" prefWidth="81.0" style="-fx-alignment: CENTER;" text="Ano" />
-                        <TableColumn fx:id="columnValorDiariaInfo" prefWidth="95.0" style="-fx-alignment: CENTER;" text="Valor Diária" />
-                        <TableColumn fx:id="columnSeguroInfo" prefWidth="68.0" style="-fx-alignment: CENTER;" text="Seguro" />
-                        <TableColumn fx:id="columnDataInicialInfo" prefWidth="90.0" style="-fx-alignment: CENTER;" text="Data Inicial" />
-                        <TableColumn fx:id="columnDataFinalInfo" prefWidth="88.0" style="-fx-alignment: CENTER;" text="Data Final" />
+                        <TableColumn fx:id="columnValorDiariaPesquisar" prefWidth="95.0" style="-fx-alignment: CENTER;" text="Valor" />
+                        <TableColumn fx:id="columnDataInicialPesquisar" prefWidth="118.0" style="-fx-alignment: CENTER;" text="Data de Retirada" />
+                        <TableColumn fx:id="columnDataFinalPesquisar" prefWidth="125.0" style="-fx-alignment: CENTER;" text="Data de Devolução" />
                      </columns>
                   </TableView>
                </children>
